@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Darya Likhareva — Research &amp; Product Case Studies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sage:#3D7A5C;
+    --sage-dark:#28513C;
+    --sage-tint:#EAF0EC;
+    --sage-tint-2:#F4F7F5;
+    --gold:#B07B33;
+    --ink:#20241F;
+    --ink-soft:#565F5A;
+    --ink-faint:#8B938D;
+    --paper:#FBFAF7;
+    --line:#DFE2DA;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'DM Sans',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px}
+
+  /* ===== Header ===== */
+  header.site{
+    padding:56px 0 40px;
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--sage-dark);
+    margin-bottom:14px;
+    display:block;
+  }
+  h1.name{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:clamp(34px,5vw,48px);
+    letter-spacing:-0.01em;
+    color:var(--ink);
+    margin-bottom:10px;
+  }
+  .tagline{
+    font-size:18px;
+    color:var(--ink-soft);
+    max-width:560px;
+  }
+  .site-links{
+    margin-top:22px;
+    display:flex;
+    gap:22px;
+    font-size:14px;
+  }
+  .site-links a{
+    color:var(--sage-dark);
+    text-decoration:none;
+    border-bottom:1px solid transparent;
+    transition:border-color .15s;
+  }
+  .site-links a:hover{border-bottom-color:var(--sage-dark)}
+
+  /* ===== Method spectrum (signature element) ===== */
+  .method-spectrum{
+    padding:38px 0 44px;
+    border-bottom:1px solid var(--line);
+  }
+  .method-spectrum p.label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin-bottom:16px;
+  }
+  .method-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .method-chip{
+    font-size:13.5px;
+    padding:7px 14px;
+    border-radius:100px;
+    border:1px solid var(--line);
+    background:var(--white);
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+  .method-chip b{
+    color:var(--ink);
+    font-weight:500;
+  }
+
+  /* ===== Case study sections ===== */
+  section.case{
+    padding:64px 0;
+    border-bottom:1px solid var(--line);
+  }
+  section.case:last-of-type{border-bottom:none}
+
+  .case-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:24px;
+    margin-bottom:28px;
+    flex-wrap:wrap;
+  }
+  .case-num{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+    color:var(--sage-dark);
+    letter-spacing:.05em;
+    margin-bottom:8px;
+    display:block;
+  }
+  h2.case-title{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:clamp(24px,3.4vw,32px);
+    color:var(--ink);
+    max-width:520px;
+  }
+  .case-meta{
+    text-align:right;
+    font-size:13.5px;
+    color:var(--ink-faint);
+    line-height:1.5;
+    min-width:150px;
+  }
+  .case-meta .org{color:var(--ink-soft);font-weight:500}
+
+  .case-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:32px;
+  }
+  .tag{
+    font-size:12.5px;
+    padding:4px 11px;
+    border-radius:100px;
+    background:var(--sage-tint);
+    color:var(--sage-dark);
+    font-weight:500;
+  }
+
+  .case-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:36px;
+    margin-bottom:36px;
+  }
+  .block h3{
+    font-family:'DM Sans',sans-serif;
+    font-size:13px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin-bottom:10px;
+    font-weight:700;
+  }
+  .block p{
+    font-size:15.5px;
+    color:var(--ink-soft);
+  }
+  .block ul{
+    padding-left:18px;
+    font-size:15.5px;
+    color:var(--ink-soft);
+  }
+  .block li{margin-bottom:6px}
+
+  .impact-line{
+    background:var(--sage-tint-2);
+    border-left:3px solid var(--sage);
+    padding:18px 22px;
+    font-size:15.5px;
+    color:var(--ink);
+    border-radius:0 6px 6px 0;
+  }
+  .impact-line b{color:var(--sage-dark)}
+
+  /* ===== Stat strip ===== */
+  .stat-strip{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-bottom:36px;
+  }
+  .stat-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:20px 18px;
+  }
+  .stat-num{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:26px;
+    font-weight:500;
+    color:var(--sage-dark);
+    display:flex;
+    align-items:baseline;
+    gap:6px;
+    margin-bottom:6px;
+  }
+  .stat-num .arrow{color:var(--gold);font-size:16px}
+  .stat-label{
+    font-size:13px;
+    color:var(--ink-faint);
+  }
+
+  .roadmap-row{
+    display:flex;
+    gap:0;
+    margin-bottom:36px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    overflow:hidden;
+  }
+  .roadmap-year{
+    flex:1;
+    padding:16px 16px;
+    border-right:1px solid var(--line);
+  }
+  .roadmap-year:last-child{border-right:none}
+  .roadmap-year .yr{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--sage-dark);
+    margin-bottom:6px;
+    display:block;
+  }
+  .roadmap-year .desc{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.45;
+  }
+
+  footer{
+    padding:48px 0 64px;
+    text-align:center;
+  }
+  footer p{
+    font-size:14px;
+    color:var(--ink-faint);
+  }
+  footer a{
+    color:var(--sage-dark);
+    text-decoration:none;
+    font-weight:500;
+  }
+
+  @media (max-width:720px){
+    .case-grid{grid-template-columns:1fr}
+    .stat-strip{grid-template-columns:1fr}
+    .roadmap-row{flex-direction:column}
+    .roadmap-year{border-right:none;border-bottom:1px solid var(--line)}
+    .roadmap-year:last-child{border-bottom:none}
+    .case-meta{text-align:left}
+    .case-head{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="site">
+    <span class="eyebrow">Research &amp; Product Work</span>
+    <h1 class="name">Darya Likhareva</h1>
+    <p class="tagline">Research-driven product strategist working across data science, UX research, and technical product management.</p>
+    <div class="site-links">
+      <a href="https://likhareva.com">← likhareva.com</a>
+      <a href="https://www.linkedin.com/in/likhareva/">LinkedIn</a>
+    </div>
+  </header>
+
+  <section class="method-spectrum">
+    <p class="label">Methods represented across these three projects</p>
+    <div class="method-row">
+      <span class="method-chip"><b>Longitudinal survey design</b></span>
+      <span class="method-chip"><b>Quantitative outcome analysis</b></span>
+      <span class="method-chip"><b>1:1 interviews</b></span>
+      <span class="method-chip"><b>Usability testing</b></span>
+      <span class="method-chip"><b>Stakeholder synthesis</b></span>
+      <span class="method-chip"><b>Statistical model QA</b></span>
+    </div>
+  </section>
+
+  <!-- ===================== CASE 1 ===================== -->
+  <section class="case" id="gbi">
+    <div class="case-head">
+      <div>
+        <span class="case-num">01 — Program Evaluation</span>
+        <h2 class="case-title">Does guaranteed income change outcomes for youth aging out of foster care?</h2>
+      </div>
+      <div class="case-meta">
+        <div class="org">County Government Agency</div>
+        <div>Guaranteed Income Pilot Evaluation</div>
+        <div>2020 – 2025</div>
+      </div>
+    </div>
+
+    <div class="case-tags">
+      <span class="tag">Longitudinal survey design</span>
+      <span class="tag">Quantitative outcome analysis</span>
+      <span class="tag">Digital storytelling</span>
+      <span class="tag">Stakeholder coordination</span>
+    </div>
+
+    <div class="case-grid">
+      <div class="block">
+        <h3>Problem</h3>
+        <p>Former foster youth face disproportionate risk of homelessness and financial instability once they age out of the system. The agency needed rigorous evidence on whether unconditional monthly cash payments — $1,200/month for two years — measurably changed housing, education, and employment outcomes, in order to decide whether to expand the program.</p>
+      </div>
+      <div class="block">
+        <h3>My Approach</h3>
+        <ul>
+          <li>Involved from project initiation, coordinating needs across the agency and partner-organization stakeholders</li>
+          <li>Defined scope and programmed a pre/post evaluation design: a baseline survey instrument and matched follow-up survey for a cohort of 122 former foster youth</li>
+          <li>Owned quantitative analysis and reporting across housing, education, employment, and financial-security outcome domains</li>
+          <li>Worked with participants to co-create digital stories (interactive video, poetry, photography) that made the quantitative findings tangible to funders and policymakers</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom:14px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;">Method note</h3>
+    <p style="font-size:15.5px;color:var(--ink-soft);margin-bottom:28px;">Longitudinal pre/post design, n=122. Baseline survey fielded at enrollment; matched follow-up survey fielded roughly two years later, tracking the same respondents across eight quantitative outcome measures.</p>
+
+    <h3 style="margin-bottom:14px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;">Key findings — baseline to follow-up (n=122)</h3>
+    <div class="stat-strip">
+      <div class="stat-card">
+        <div class="stat-num">13% <span class="arrow">→</span> 33%</div>
+        <div class="stat-label">Full-time school enrollment</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">11% <span class="arrow">→</span> 5%</div>
+        <div class="stat-label">Literal homelessness</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">44% <span class="arrow">→</span> 58%</div>
+        <div class="stat-label">Full-time employment</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">0% <span class="arrow">→</span> 3%</div>
+        <div class="stat-label">Home ownership</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">72% <span class="arrow">→</span> 88%</div>
+        <div class="stat-label">Holding a checking account</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">56% <span class="arrow">→</span> 60%</div>
+        <div class="stat-label">In a self-reported meaningful career</div>
+      </div>
+    </div>
+
+    <div class="impact-line">
+      <b>Impact:</b> Findings contributed directly to the agency's decision to extend the program and fund it at a larger scale — a second cohort of former foster youth began payments the following year, and the model has since expanded into a nine-pilot regional guaranteed-income effort.
+    </div>
+  </section>
+
+  <!-- ===================== CASE 2 ===================== -->
+  <section class="case" id="worldatwork">
+    <div class="case-head">
+      <div>
+        <span class="case-num">02 — Research Program Redesign</span>
+        <h2 class="case-title">Building a research engine that kept HR leaders ahead of the trends that mattered.</h2>
+      </div>
+      <div class="case-meta">
+        <div class="org">National Research Association</div>
+        <div>Rapid-Cycle Research Program</div>
+      </div>
+    </div>
+
+    <div class="case-tags">
+      <span class="tag">Survey research</span>
+      <span class="tag">Practitioner interviews</span>
+      <span class="tag">Rapid-cycle studies</span>
+      <span class="tag">Thought leadership</span>
+    </div>
+
+    <div class="case-grid">
+      <div class="block">
+        <h3>Problem</h3>
+        <p>The organization's research process was built for long, infrequent reports — by the time a study shipped, the workforce and compensation trends it covered had often already moved on. Leadership needed research that HR leaders could act on while a trend was still current, not months later.</p>
+      </div>
+      <div class="block">
+        <h3>My Approach</h3>
+        <p>I led the shift from occasional long-form reports to a repeatable model of bite-sized, quick-turnaround studies. For each study, I designed and fielded a structured quantitative survey and paired it with practitioner interviews, triangulating the two to move from raw data to a credible, publishable point of view fast. Run consistently, this became the organization's core thought-leadership engine on emerging HR and total-rewards topics.</p>
+      </div>
+    </div>
+
+    <div class="impact-line">
+      <b>Impact:</b> The faster survey-plus-interview cadence let the organization publish credible research while a trend was still forming rather than after the fact, establishing its research team as a go-to source HR leaders turned to for what was current in their space — and building a repeatable model the organization continued to run studies on.
+    </div>
+  </section>
+
+  <!-- ===================== CASE 3 ===================== -->
+  <section class="case" id="mars">
+    <div class="case-head">
+      <div>
+        <span class="case-num">03 — Technical Product Management</span>
+        <h2 class="case-title">Making a Bayesian marketing-mix model usable for the people who have to act on it.</h2>
+      </div>
+      <div class="case-meta">
+        <div class="org">Data &amp; Analytics Consultancy</div>
+        <div>Marketing-Mix Measurement Platform</div>
+        <div>Client: Global Pharmaceutical Company</div>
+        <div>2023 – 2026</div>
+      </div>
+    </div>
+
+    <div class="case-tags">
+      <span class="tag">Bayesian modeling</span>
+      <span class="tag">Technical PM</span>
+      <span class="tag">Usability testing</span>
+      <span class="tag">Statistical model QA</span>
+    </div>
+
+    <div class="case-grid">
+      <div class="block">
+        <h3>Problem</h3>
+        <p>The client needed a single source of truth for marketing ROI across every channel — statistically rigorous enough for Data Science and Finance to trust, but interpretable enough for marketing teams to actually use in planning decisions. The platform uses Bayesian marketing-mix modeling to estimate incremental sales impact and ROI at the channel level from aggregated, geo-level time-series data.</p>
+      </div>
+      <div class="block">
+        <h3>My Approach</h3>
+        <ul>
+          <li>Served as overall technical PM, guiding the roadmap by combining data science fluency with UX judgment</li>
+          <li>Ran multiple usability sessions directly with the client's marketing teams — the platform's end users</li>
+          <li>Reviewed model outputs from both a statistical and a business/user perspective, and helped resolve underlying data issues</li>
+          <li>Guided decisions on modeling methodology, new features, and the specific data cuts and granularity the platform exposed</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom:14px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;">Quantitative approach</h3>
+    <p style="font-size:15.5px;color:var(--ink-soft);margin-bottom:28px;">The model follows a Bayesian workflow: industry benchmarks and prior experiments set the prior, channel-level spend/impressions/reach/sales/competitor data form the evidence, and the two combine into a posterior, probability-weighted ROI estimate per channel. My role included pushing the model from national-aggregate estimation to geo-level (zip3) granularity, shifting the core exposure metric from raw impressions to reach and frequency, and moving validation from simple correlation to calibration against real lift tests — all reviewed jointly with Data Science and Finance before release.</p>
+
+    <h3 style="margin-bottom:14px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;">Platform at scale</h3>
+    <div class="stat-strip">
+      <div class="stat-card">
+        <div class="stat-num">8+</div>
+        <div class="stat-label">Priority brands modeled at indication level</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Independent validation layers — DS, Finance, QA</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">Q1</div>
+        <div class="stat-label">Data-latency target, down from 3+ months</div>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom:14px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;">Model evolution under this work</h3>
+    <div class="roadmap-row">
+      <div class="roadmap-year"><span class="yr">2023</span><div class="desc">Constrained regression — baseline established</div></div>
+      <div class="roadmap-year"><span class="yr">2024</span><div class="desc">Lightweight Bayesian pilot — first geo-level experiments</div></div>
+      <div class="roadmap-year"><span class="yr">2025</span><div class="desc">Full Bayesian MMM — geo-level, lift-test calibrated</div></div>
+      <div class="roadmap-year"><span class="yr">2026</span><div class="desc">AI-enhanced platform — GenAI summaries, scenario planning</div></div>
+    </div>
+
+    <div class="impact-line">
+      <b>Key finding &amp; impact:</b> Usability sessions with marketing users surfaced that a key optimization feature was underused because its language and complexity created a barrier to entry. Refining the feature and simplifying its language directly increased adoption of the tool among marketing teams — without weakening the statistical rigor underneath it.
+    </div>
+  </section>
+
+  <footer>
+    <p>Want to talk through any of these in more depth? <a href="https://www.linkedin.com/in/likhareva/">Reach out on LinkedIn</a></p>
+  </footer>
+</div>
+
+</body>
+</html>
