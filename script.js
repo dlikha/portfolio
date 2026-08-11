@@ -141,7 +141,7 @@
   document.querySelectorAll('.flow, .sprint').forEach(function(f){ flowObs.observe(f); });
 
   /* Active nav link */
-  var secs = ['about','methods','work','skills','publications','contact']
+  var secs = ['about','methods','work','publications','contact']
     .map(function(id){ return document.getElementById(id); })
     .filter(Boolean);
   var navA = {};
@@ -158,4 +158,36 @@
     });
   }, {threshold:0.25, rootMargin:'-20% 0px -50% 0px'});
   secs.forEach(function(s){ sObs.observe(s); });
+
+  /* Case study collapse/expand */
+  document.querySelectorAll('.case-toggle').forEach(function(btn){
+    var body = btn.nextElementSibling;
+    var label = btn.querySelector('.case-toggle-txt');
+    btn.addEventListener('click', function(){
+      var isOpen = body.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      label.textContent = isOpen ? 'Hide case study' : 'View full case study';
+      if (!isOpen) {
+        var article = btn.closest('.case');
+        var top = article.getBoundingClientRect().top + window.scrollY - 90;
+        if (window.scrollY > top) window.scrollTo({top: top, behavior: 'smooth'});
+      }
+    });
+  });
+
+  /* Auto-expand a case if linked directly or via a map point */
+  function expandCaseFor(hash){
+    var id = hash.replace('#','');
+    var target = document.getElementById(id) || document.getElementById('case-' + id);
+    if (!target || !target.classList.contains('case')) return;
+    var body = target.querySelector('.case-body');
+    var btn = target.querySelector('.case-toggle');
+    if (body && btn && !body.classList.contains('open')) {
+      body.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      btn.querySelector('.case-toggle-txt').textContent = 'Hide case study';
+    }
+  }
+  if (window.location.hash) expandCaseFor(window.location.hash);
+  window.addEventListener('hashchange', function(){ expandCaseFor(window.location.hash); });
 })();

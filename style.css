@@ -153,10 +153,6 @@
   .about-text p{font-size:16px;color:var(--ink-soft);margin-bottom:16px}
   .about-text p.lead{font-size:19.5px;color:var(--ink);font-weight:500;line-height:1.45}
   .about-text strong{color:var(--ink);font-weight:600}
-  .chip{
-    font-size:12.5px;padding:6px 14px;border-radius:100px;
-    background:var(--terracotta-tint);color:var(--terracotta-deep);font-weight:600;
-  }
 
   /* Path timeline */
   .path{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;padding:30px 28px}
@@ -276,7 +272,22 @@
     text-decoration:none;border-bottom:1px solid transparent;transition:border-color .18s,gap .18s;
   }
   .case-link:hover{border-bottom-color:var(--terracotta-deep);gap:9px}
-  .case-chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:36px}
+  .case-chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:28px}
+  .case-toggle{
+    display:inline-flex;align-items:center;gap:9px;
+    background:none;border:1px solid var(--line);border-radius:100px;
+    padding:11px 20px;font-family:'Poppins',sans-serif;font-size:13.5px;font-weight:600;
+    color:var(--ink);cursor:pointer;transition:border-color .18s,background .18s;
+  }
+  .case-toggle:hover{border-color:var(--terracotta);background:var(--terracotta-tint-2)}
+  .case-toggle-arw{display:inline-block;font-size:12px;color:var(--terracotta-deep);transition:transform .3s cubic-bezier(.3,.7,.3,1)}
+  .case-toggle[aria-expanded="true"] .case-toggle-arw{transform:rotate(180deg)}
+  .case-body{
+    display:grid;grid-template-rows:0fr;
+    transition:grid-template-rows .5s cubic-bezier(.3,.7,.25,1);
+  }
+  .case-body.open{grid-template-rows:1fr}
+  .case-body-inner{overflow:hidden;padding-top:36px}
   .cchip{font-size:12px;padding:5px 12px;border-radius:100px;border:1px solid var(--line);background:var(--white);color:var(--ink-soft);font-weight:500}
   .cols{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-bottom:40px}
   .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;margin-bottom:11px}
@@ -376,16 +387,6 @@
     text-transform:uppercase;color:var(--terracotta-deep);display:block;margin-bottom:9px;font-weight:600;
   }
 
-  /* ============ Skills & Tools ============ */
-  .skills-grid{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:40px;
-  }
-  .skill-group h3{
-    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--ink-faint);font-weight:700;margin-bottom:16px;
-  }
-  .skill-tags{display:flex;flex-wrap:wrap;gap:8px}
-
   /* ============ Public Work ============ */
   .pub-list{display:flex;flex-direction:column;gap:2px;margin-top:36px}
   .pub-item{
@@ -431,7 +432,6 @@
     .about-grid{grid-template-columns:1fr;gap:38px}
     .cols{grid-template-columns:1fr;gap:28px}
     .bars,.stats3{grid-template-columns:1fr}
-    .skills-grid{grid-template-columns:1fr;gap:28px}
     .sprint-line{display:none}
     .sprint-steps{flex-direction:column;align-items:flex-start;gap:0}
     .sprint-step{
