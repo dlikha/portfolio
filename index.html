@@ -249,7 +249,23 @@
   .fchip:hover{transform:translateY(-1px);border-color:var(--terracotta)}
   .fchip[aria-pressed="true"]{background:var(--ink);color:var(--white);border-color:var(--ink)}
   .fchip:focus-visible{outline:2px solid var(--terracotta-deep);outline-offset:2px}
-  .plot-wrap{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:24px 20px}
+  .plot-wrap{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:24px 20px;position:relative}
+  .pt.has-note{cursor:help}
+  .map-note-tip{
+    position:absolute;z-index:30;pointer-events:none;
+    background:var(--ink);color:var(--white);
+    font-size:12px;font-weight:500;line-height:1.4;
+    padding:8px 12px;border-radius:8px;max-width:210px;
+    opacity:0;transform:translate(-50%,-100%) translateY(-10px);
+    transition:opacity .15s ease,transform .15s ease;
+    box-shadow:0 12px 26px -10px rgba(43,48,46,.4);
+  }
+  .map-note-tip::after{
+    content:'';position:absolute;left:50%;top:100%;
+    transform:translateX(-50%);border:6px solid transparent;
+    border-top-color:var(--ink);
+  }
+  .map-note-tip.show{opacity:1;transform:translate(-50%,-100%) translateY(-16px)}
   .plot{width:100%;height:auto;display:block}
   .pt{cursor:default;transition:opacity .3s ease}
   .pt.dim{opacity:.13!important}
@@ -560,6 +576,7 @@
     </div>
 
     <div class="plot-wrap rv">
+      <div class="map-note-tip" id="mapNoteTip"></div>
       <svg class="plot" viewBox="0 0 900 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Scatter plot of research methods positioned across qualitative to quantitative and exploratory to evaluative axes">
         <rect x="70" y="50" width="790" height="490" fill="#FCFAF8"/>
         <g stroke="#F1EAE3" stroke-width="1">
@@ -582,77 +599,77 @@
         <text class="quad-lab" x="848" y="530" text-anchor="end">measure &amp; validate</text>
 
         <g id="pts">
-          <g class="pt" data-cat="qual">
+          <g class="pt has-note" data-cat="qual" data-note="Observing people in their real workflow, not just asking about it">
             <circle class="halo" cx="135" cy="115" r="20" fill="#B54A2E" opacity=".13"/>
             <circle class="core" cx="135" cy="115" r="8" fill="#B54A2E"/>
             <text x="135" y="90" text-anchor="middle">Contextual inquiry</text>
           </g>
-          <g class="pt" data-cat="mixed">
+          <g class="pt has-note" data-cat="mixed" data-note="Co-created digital stories with participants in the UBI pilot">
             <circle class="halo" cx="300" cy="98" r="20" fill="#D98F5E" opacity=".13"/>
             <circle class="core" cx="300" cy="98" r="8" fill="#D98F5E"/>
             <text x="300" y="73" text-anchor="middle">Participatory co-design</text>
           </g>
-          <g class="pt" data-cat="quant">
+          <g class="pt has-note" data-cat="quant" data-note="Designed the baseline and follow-up survey instruments for the UBI pilot, n=72">
             <circle class="halo" cx="690" cy="103" r="20" fill="#6B5B95" opacity=".13"/>
             <circle class="core" cx="690" cy="103" r="8" fill="#6B5B95"/>
             <text x="690" y="78" text-anchor="middle">Survey design</text>
           </g>
-          <g class="pt" data-cat="qual">
+          <g class="pt has-note" data-cat="qual" data-note="Group discussions to surface shared patterns and tensions">
             <circle class="halo" cx="215" cy="196" r="20" fill="#B54A2E" opacity=".13"/>
             <circle class="core" cx="215" cy="196" r="8" fill="#B54A2E"/>
             <text x="215" y="228" text-anchor="middle">Focus groups</text>
           </g>
-          <g class="pt" data-cat="mixed">
+          <g class="pt has-note" data-cat="mixed" data-note="Aligned agency and partner-org priorities on the UBI pilot">
             <circle class="halo" cx="425" cy="178" r="20" fill="#D98F5E" opacity=".13"/>
             <circle class="core" cx="425" cy="178" r="8" fill="#D98F5E"/>
             <text x="425" y="153" text-anchor="middle">Stakeholder synthesis</text>
           </g>
-          <g class="pt" data-cat="mixed">
+          <g class="pt has-note" data-cat="mixed" data-note="Exploratory NLP work from a graduate school project — details live in a collaborator's repo">
             <circle class="halo" cx="565" cy="212" r="20" fill="#D98F5E" opacity=".13"/>
             <circle class="core" cx="565" cy="212" r="8" fill="#D98F5E"/>
             <text x="565" y="244" text-anchor="middle">NLP &amp; text analytics</text>
           </g>
-          <g class="pt" data-cat="quant">
+          <g class="pt has-note" data-cat="quant" data-note="Supported as a consultant on a separate confidential project">
             <circle class="halo" cx="812" cy="186" r="20" fill="#6B5B95" opacity=".13"/>
             <circle class="core" cx="812" cy="186" r="8" fill="#6B5B95"/>
             <text x="855" y="218" text-anchor="end">Segmentation &amp; clustering</text>
           </g>
-          <g class="pt" data-cat="qual">
+          <g class="pt has-note" data-cat="qual" data-note="Practitioner interviews for a rapid-cycle research program">
             <circle class="halo" cx="128" cy="262" r="20" fill="#B54A2E" opacity=".13"/>
             <circle class="core" cx="128" cy="262" r="8" fill="#B54A2E"/>
-            <text x="78" y="294" text-anchor="start">Practitioner interviews</text>
+            <text x="78" y="294" text-anchor="start">Interviews</text>
           </g>
-          <g class="pt" data-cat="mixed">
+          <g class="pt has-note" data-cat="mixed" data-note="Built a repeatable, three-week research model — quick turnaround is a consulting habit">
             <circle class="halo" cx="378" cy="334" r="20" fill="#D98F5E" opacity=".13"/>
             <circle class="core" cx="378" cy="334" r="8" fill="#D98F5E"/>
             <text x="378" y="309" text-anchor="middle">Rapid-cycle studies</text>
           </g>
-          <g class="pt" data-cat="quant">
+          <g class="pt has-note" data-cat="quant" data-note="Conducted for a client project — not publicly linkable">
             <circle class="halo" cx="640" cy="322" r="20" fill="#6B5B95" opacity=".13"/>
             <circle class="core" cx="640" cy="322" r="8" fill="#6B5B95"/>
             <text x="640" y="297" text-anchor="middle">Conjoint / MaxDiff</text>
           </g>
-          <g class="pt" data-cat="qual">
+          <g class="pt has-note" data-cat="qual" data-note="Usability sessions with marketing-team users on a marketing-mix platform">
             <circle class="halo" cx="162" cy="400" r="20" fill="#B54A2E" opacity=".13"/>
             <circle class="core" cx="162" cy="400" r="8" fill="#B54A2E"/>
             <text x="162" y="432" text-anchor="middle">Usability testing</text>
           </g>
-          <g class="pt" data-cat="quant">
+          <g class="pt has-note" data-cat="quant" data-note="Randomized experiment testing message timing (MIDS coursework), including a power analysis">
             <circle class="halo" cx="726" cy="406" r="20" fill="#6B5B95" opacity=".13"/>
             <circle class="core" cx="726" cy="406" r="8" fill="#6B5B95"/>
             <text x="726" y="438" text-anchor="middle">A/B &amp; experimentation</text>
           </g>
-          <g class="pt" data-cat="quant">
+          <g class="pt has-note" data-cat="quant" data-note="Two-year pre/post outcome tracking for the UBI pilot, n=72">
             <circle class="halo" cx="470" cy="452" r="20" fill="#6B5B95" opacity=".13"/>
             <circle class="core" cx="470" cy="452" r="8" fill="#6B5B95"/>
             <text x="470" y="484" text-anchor="middle">Longitudinal outcomes</text>
           </g>
-          <g class="pt" data-cat="quant">
+          <g class="pt has-note" data-cat="quant" data-note="Reviewed statistical model outputs for rigor and business fit">
             <circle class="halo" cx="812" cy="492" r="20" fill="#6B5B95" opacity=".13"/>
             <circle class="core" cx="812" cy="492" r="8" fill="#6B5B95"/>
             <text x="855" y="462" text-anchor="end">Statistical model</text>
           </g>
-          <g class="pt" data-cat="quant">
+          <g class="pt has-note" data-cat="quant" data-note="Calibrated model estimates against real outcomes, not just correlation">
             <circle class="halo" cx="580" cy="392" r="20" fill="#6B5B95" opacity=".13"/>
             <circle class="core" cx="580" cy="392" r="8" fill="#6B5B95"/>
             <text x="580" y="367" text-anchor="middle">Causal inference</text>
@@ -674,7 +691,7 @@
 
   <!-- CASE 1 -->
   <div class="wrap">
-    <article class="case rv">
+    <article class="case rv" id="case-gbi">
       <div class="case-top">
         <div>
           <div class="case-idx"><span class="bar"></span> 01 · Program evaluation</div>
@@ -759,7 +776,7 @@
     </article>
 
     <!-- CASE 2 -->
-    <article class="case rv">
+    <article class="case rv" id="case-worldatwork">
       <div class="case-top">
         <div>
           <div class="case-idx"><span class="bar"></span> 02 · Research program redesign</div>
@@ -770,7 +787,7 @@
       <div class="case-chips">
         <span class="cchip">Research program design</span>
         <span class="cchip">Survey research</span>
-        <span class="cchip">Practitioner interviews</span>
+        <span class="cchip">Interviews</span>
         <span class="cchip">Rapid-cycle studies</span>
         <span class="cchip">Thought leadership</span>
       </div>
@@ -830,7 +847,7 @@
     </article>
 
     <!-- CASE 3 -->
-    <article class="case rv">
+    <article class="case rv" id="case-mars">
       <div class="case-top">
         <div>
           <div class="case-idx"><span class="bar"></span> 03 · Technical product management, ML/AI</div>
@@ -920,10 +937,10 @@
         </div>
         <span class="pub-arw">↗</span>
       </a>
-      <a class="pub-item" href="https://github.com/dlikha/MIDSSlacker" target="_blank" rel="noopener">
+      <a class="pub-item" id="pub-midsslacker" href="https://github.com/dlikha/MIDSSlacker" target="_blank" rel="noopener">
         <div class="pub-main">
           <span class="pub-title">Optimal Timing for Slack Messages in the MIDS Program</span>
-          <span class="pub-meta">UC Berkeley MIDS · Randomized Experiment</span>
+          <span class="pub-meta">UC Berkeley MIDS · Randomized Experiment, Power Analysis</span>
         </div>
         <span class="pub-arw">↗</span>
       </a>
@@ -1087,6 +1104,37 @@
   }, {threshold:0.25});
   var plot = document.querySelector('.plot');
   if (plot) mObs.observe(plot);
+
+  /* Methods map: small note tooltip for confidential-work points only */
+  var noteTip = document.getElementById('mapNoteTip');
+  var plotEl = document.querySelector('.plot');
+  var plotWrapEl = document.querySelector('.plot-wrap');
+  if (noteTip && plotEl && plotWrapEl) {
+    document.querySelectorAll('.pt.has-note').forEach(function(p){
+      var note = p.dataset.note;
+      p.setAttribute('tabindex', '0');
+      var label = p.querySelector('text') ? p.querySelector('text').textContent : '';
+      p.setAttribute('aria-label', label + ': ' + note);
+      function showNote(){
+        noteTip.textContent = note;
+        var core = p.querySelector('circle.core');
+        var cx = parseFloat(core.getAttribute('cx'));
+        var cy = parseFloat(core.getAttribute('cy'));
+        var svgRect = plotEl.getBoundingClientRect();
+        var wrapRect = plotWrapEl.getBoundingClientRect();
+        var scaleX = svgRect.width / 900;
+        var scaleY = svgRect.height / 620;
+        noteTip.style.left = ((svgRect.left - wrapRect.left) + cx * scaleX) + 'px';
+        noteTip.style.top = ((svgRect.top - wrapRect.top) + cy * scaleY) + 'px';
+        noteTip.classList.add('show');
+      }
+      function hideNote(){ noteTip.classList.remove('show'); }
+      p.addEventListener('mouseenter', showNote);
+      p.addEventListener('mouseleave', hideNote);
+      p.addEventListener('focus', showNote);
+      p.addEventListener('blur', hideNote);
+    });
+  }
 
   /* Flow diagram & sprint timeline: trigger pulse animation on scroll */
   var flowObs = new IntersectionObserver(function(entries){
