@@ -3,583 +3,913 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Darya Likhareva — Research &amp; Case Studies</title>
+<title>Darya Likhareva — Research-Driven Product Strategist</title>
+<meta name="description" content="Research-driven product strategist working at the intersection of product strategy, data science, and UX research.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --terracotta:#CB9981;
     --terracotta-deep:#9C6B52;
     --terracotta-tint:#F3E7DE;
-    --terracotta-tint-2:#F8F1EC;
-    --fog-blue:#5A6E92;
-    --ink:#363B39;
-    --ink-soft:#6B716D;
-    --ink-faint:#9A9F9B;
+    --terracotta-tint-2:#F9F2ED;
+    --fog:#5A6E92;
+    --fog-light:#8695B3;
+    --gold:#EAD3AC;
+    --ink:#2B302E;
+    --ink-soft:#666D69;
+    --ink-faint:#9BA19D;
     --paper:#FDFBF9;
+    --paper-2:#F7F2ED;
     --line:#EAE1D9;
-    --white:#FFFFFF;
+    --white:#fff;
+    --nav-h:64px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;scroll-padding-top:80px}
   body{
     background:var(--paper);
     color:var(--ink);
     font-family:'Poppins',sans-serif;
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
   }
   a{color:inherit}
-  .wrap{max-width:920px;margin:0 auto;padding:0 28px}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 32px}
+  .mono{font-family:'IBM Plex Mono',monospace}
 
-  /* ===== Top nav ===== */
+  /* ============ Scroll progress ============ */
+  .progress{
+    position:fixed;top:0;left:0;height:3px;width:0%;
+    background:linear-gradient(90deg,var(--gold),var(--terracotta),var(--fog));
+    z-index:200;transition:width .1s linear;
+  }
+
+  /* ============ Nav ============ */
   nav.topnav{
-    background:var(--white);
-    border-bottom:1px solid var(--line);
+    position:fixed;top:0;left:0;right:0;height:var(--nav-h);
+    background:rgba(253,251,249,.78);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid transparent;
+    z-index:150;transition:border-color .25s,background .25s;
   }
+  nav.topnav.scrolled{border-bottom-color:var(--line)}
   .navwrap{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 28px;
-    max-width:920px;
-    margin:0 auto;
+    max-width:1060px;margin:0 auto;padding:0 32px;height:100%;
+    display:flex;justify-content:space-between;align-items:center;
   }
-  .nav-name{
-    font-weight:600;
-    font-size:17px;
-    color:var(--ink);
-    letter-spacing:-0.01em;
-  }
-  .nav-links{
-    display:flex;
-    align-items:center;
-    gap:22px;
-    font-size:14px;
-  }
+  .nav-name{font-weight:600;font-size:16px;letter-spacing:-.01em;text-decoration:none}
+  .nav-name .dot{color:var(--terracotta-deep)}
+  .nav-links{display:flex;align-items:center;gap:28px;font-size:14px}
   .nav-links a{
-    text-decoration:none;
-    color:var(--ink-soft);
-    font-weight:500;
-    transition:color .15s;
+    text-decoration:none;color:var(--ink-soft);font-weight:500;
+    position:relative;padding:4px 0;transition:color .18s;
   }
-  .nav-links a:hover{color:var(--terracotta-deep)}
-  .nav-links a.current{
-    color:var(--ink);
-    border-bottom:1px solid var(--terracotta);
-    padding-bottom:2px;
+  .nav-links a::after{
+    content:'';position:absolute;left:0;right:0;bottom:0;height:1.5px;
+    background:var(--terracotta-deep);transform:scaleX(0);transform-origin:left;
+    transition:transform .22s ease;
   }
-  .nav-icon{width:17px;height:17px;display:block}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+  .nav-links a.active{color:var(--ink)}
+  .nav-links a.nav-cta{
+    background:var(--ink);color:var(--white)!important;padding:10px 20px;
+    border-radius:100px;font-weight:500;font-size:13.5px;white-space:nowrap;flex:none;
+    transition:background .18s,transform .18s;
+  }
+  .nav-links a.nav-cta::after{display:none!important}
+  .nav-links a.nav-cta:hover{background:var(--terracotta-deep);transform:translateY(-1px)}
 
-  /* ===== Hero ===== */
+  /* ============ Hero ============ */
   .hero{
-    position:relative;
-    padding:64px 0 84px;
-    overflow:hidden;
+    position:relative;min-height:92vh;display:flex;align-items:center;
+    padding:calc(var(--nav-h) + 40px) 0 80px;overflow:hidden;
   }
-  .hero-bg{
-    position:absolute;
-    inset:0;
-    background:linear-gradient(180deg,
-      #EAD3AC 0%,
-      #E0B79A 24%,
-      #CB9981 46%,
-      #A9808C 68%,
-      #6C7896 86%,
-      #5A6E92 100%);
-    opacity:.9;
+  .hero-bg{position:absolute;inset:0;z-index:0}
+  .hero-bg::before{
+    content:'';position:absolute;inset:-20%;
+    background:
+      radial-gradient(48% 42% at 18% 12%, #F0DCB8 0%, transparent 62%),
+      radial-gradient(52% 46% at 82% 22%, #E7BFA3 0%, transparent 64%),
+      radial-gradient(56% 50% at 30% 78%, #C08E86 0%, transparent 66%),
+      radial-gradient(60% 54% at 78% 88%, #6C7C9E 0%, transparent 68%),
+      linear-gradient(175deg,#F5E4C9 0%,#E3B9A0 38%,#BC8E88 66%,#6E7E9F 100%);
+    animation:drift 26s ease-in-out infinite alternate;
   }
-  .hero-inner{
-    position:relative;
-    z-index:1;
+  @keyframes drift{
+    0%{transform:scale(1) translate(0,0)}
+    100%{transform:scale(1.12) translate(-2%,-2%)}
   }
-  .hero-card{
-    background:rgba(203,153,129,0.88);
-    border-radius:18px;
-    padding:44px 40px;
-    max-width:640px;
-    box-shadow:0 20px 50px -20px rgba(54,59,57,.35);
+  .grain{
+    position:absolute;inset:0;opacity:.16;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
   }
-  .eyebrow{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:12px;
-    letter-spacing:.14em;
-    text-transform:uppercase;
-    color:rgba(255,255,255,.85);
-    margin-bottom:16px;
-    display:block;
+  .hero-inner{position:relative;z-index:2;width:100%}
+  .hero-eyebrow{
+    font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
+    color:rgba(255,255,255,.9);margin-bottom:22px;display:flex;align-items:center;gap:10px;
   }
-  .hero-card h1{
-    font-weight:700;
-    font-size:clamp(32px,4.6vw,44px);
-    letter-spacing:-0.01em;
-    color:var(--white);
-    margin-bottom:18px;
-    line-height:1.15;
+  .hero-eyebrow::before{content:'';width:34px;height:1px;background:rgba(255,255,255,.6)}
+  .hero h1{
+    font-size:clamp(40px,7.4vw,82px);font-weight:700;line-height:1.03;
+    letter-spacing:-.035em;color:var(--white);max-width:14ch;margin-bottom:26px;
+    text-shadow:0 2px 30px rgba(43,48,46,.18);
+  }
+  .hero h1 .accent{
+    display:inline-block;
+    background:linear-gradient(100deg,#7A4A31,#A96B45);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:none;
   }
   .hero-sub{
-    font-size:16.5px;
-    color:rgba(255,255,255,.92);
-    max-width:520px;
-    margin-bottom:26px;
+    font-size:clamp(16px,1.9vw,19.5px);color:rgba(255,255,255,.94);
+    max-width:52ch;margin-bottom:38px;font-weight:400;
   }
-  .hero-link{
-    display:inline-block;
-    font-size:14px;
-    font-weight:500;
-    color:var(--white);
-    text-decoration:none;
-    border-bottom:1px solid rgba(255,255,255,.6);
-    padding-bottom:2px;
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;text-decoration:none;
+    padding:15px 28px;border-radius:100px;font-size:14.5px;font-weight:600;
+    transition:transform .18s,box-shadow .18s,background .18s;
   }
-  .hero-btn{
-    position:absolute;
-    right:28px;
-    bottom:-24px;
-    z-index:2;
-    background:var(--terracotta-deep);
-    color:var(--white);
-    font-weight:600;
-    font-size:14px;
-    text-decoration:none;
-    padding:14px 26px;
-    border-radius:10px;
-    box-shadow:0 12px 26px -10px rgba(54,59,57,.4);
-    transition:transform .15s;
-  }
-  .hero-btn:hover{transform:translateY(-2px)}
+  .btn-primary{background:var(--white);color:var(--ink);box-shadow:0 10px 30px -12px rgba(43,48,46,.5)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 36px -12px rgba(43,48,46,.55)}
+  .btn-ghost{border:1.5px solid rgba(255,255,255,.55);color:var(--white)}
+  .btn-ghost:hover{background:rgba(255,255,255,.14);transform:translateY(-2px)}
+  .btn .arw{transition:transform .2s}
+  .btn:hover .arw{transform:translateX(4px)}
 
-  /* ===== Method spectrum (signature element) ===== */
-  .method-spectrum{
-    padding:64px 0 44px;
-    border-bottom:1px solid var(--line);
+  .hero-marks{
+    position:absolute;left:0;right:0;bottom:26px;z-index:2;
   }
-  .method-spectrum p.label{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:12px;
-    letter-spacing:.1em;
-    text-transform:uppercase;
-    color:var(--ink-faint);
-    margin-bottom:16px;
+  .hero-marks .wrap{display:flex;gap:34px;flex-wrap:wrap;align-items:center}
+  .hmark{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.82)}
+  .hmark b{display:block;font-size:19px;letter-spacing:-.01em;text-transform:none;color:#fff;font-weight:600;margin-top:1px}
+
+  /* ============ Section furniture ============ */
+  .sec{padding:104px 0}
+  .sec-tight{padding:80px 0}
+  .kicker{
+    font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--terracotta-deep);display:flex;align-items:center;gap:10px;margin-bottom:18px;
   }
-  .method-row{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
+  .kicker::before{content:'';width:26px;height:1px;background:var(--terracotta)}
+  h2.sec-title{
+    font-size:clamp(28px,4.2vw,44px);font-weight:700;letter-spacing:-.03em;
+    line-height:1.1;margin-bottom:16px;max-width:18ch;
   }
-  .method-chip{
-    font-size:13.5px;
-    padding:7px 14px;
-    border-radius:100px;
-    border:1px solid var(--line);
-    background:var(--white);
-    color:var(--ink-soft);
-    white-space:nowrap;
-  }
-  .method-chip b{
-    color:var(--ink);
-    font-weight:600;
+  .sec-sub{font-size:16.5px;color:var(--ink-soft);max-width:58ch}
+
+  /* ============ Reveal ============ */
+  .rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+  .rv.in{opacity:1;transform:none}
+
+  /* ============ About ============ */
+  .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:start;margin-top:44px}
+  .about-text p{font-size:16px;color:var(--ink-soft);margin-bottom:16px}
+  .about-text p.lead{font-size:19.5px;color:var(--ink);font-weight:500;line-height:1.45}
+  .about-text strong{color:var(--ink);font-weight:600}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+  .chip{
+    font-size:12.5px;padding:6px 14px;border-radius:100px;
+    background:var(--terracotta-tint);color:var(--terracotta-deep);font-weight:600;
   }
 
-  /* ===== Case study sections ===== */
-  section.case{
-    padding:64px 0;
-    border-bottom:1px solid var(--line);
+  /* Path timeline */
+  .path{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;padding:30px 28px}
+  .path-label{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:22px;display:block}
+  .path ol{list-style:none;position:relative}
+  .path li{position:relative;padding-left:32px;padding-bottom:22px}
+  .path li:last-child{padding-bottom:0}
+  .path li::before{
+    content:'';position:absolute;left:2px;top:6px;width:9px;height:9px;border-radius:50%;
+    background:var(--terracotta-deep);box-shadow:0 0 0 4px var(--terracotta-tint);
+    transition:transform .3s;
   }
-  section.case:last-of-type{border-bottom:none}
+  .path li:hover::before{transform:scale(1.35)}
+  .path li:not(:last-child)::after{
+    content:'';position:absolute;left:6px;top:18px;bottom:0;width:1.5px;
+    background:linear-gradient(180deg,var(--terracotta),var(--line));
+  }
+  .path b{display:block;font-size:14.5px;font-weight:600;margin-bottom:1px}
+  .path p{font-size:13px;color:var(--ink-soft);line-height:1.5}
 
-  .case-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    gap:24px;
-    margin-bottom:28px;
-    flex-wrap:wrap;
+  /* ============ Methods Map (signature) ============ */
+  .mapsec{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .map-intro{max-width:64ch;margin-top:26px}
+  .map-intro p{font-size:16px;color:var(--ink-soft);margin-bottom:14px}
+  .map-controls{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    margin:30px 0 18px;
   }
-  .case-num{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:13px;
-    color:var(--terracotta-deep);
-    letter-spacing:.05em;
-    margin-bottom:8px;
-    display:block;
+  .filter-lbl{
+    font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-faint);margin-right:4px;
   }
-  h2.case-title{
-    font-weight:600;
-    font-size:clamp(23px,3.2vw,30px);
-    color:var(--ink);
-    max-width:520px;
-    letter-spacing:-0.01em;
+  .fchip{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'Poppins',sans-serif;font-size:13px;font-weight:500;
+    padding:8px 16px;border-radius:100px;cursor:pointer;
+    border:1px solid var(--line);background:var(--white);color:var(--ink-soft);
+    transition:border-color .18s,color .18s,background .18s,transform .18s;
   }
-  .case-meta{
-    text-align:right;
-    font-size:13.5px;
-    color:var(--ink-faint);
-    line-height:1.5;
-    min-width:150px;
-  }
-  .case-meta .org{color:var(--ink-soft);font-weight:600}
-
-  .case-tags{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    margin-bottom:32px;
-  }
-  .tag{
-    font-size:12.5px;
-    padding:4px 11px;
-    border-radius:100px;
-    background:var(--terracotta-tint);
-    color:var(--terracotta-deep);
-    font-weight:600;
-  }
-
-  .case-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:36px;
-    margin-bottom:36px;
-  }
-  .block h3{
-    font-family:'Poppins',sans-serif;
-    font-size:13px;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    color:var(--ink-faint);
-    margin-bottom:10px;
-    font-weight:700;
-  }
-  .block p{
-    font-size:15.5px;
-    color:var(--ink-soft);
-  }
-  .block ul{
-    padding-left:18px;
-    font-size:15.5px;
-    color:var(--ink-soft);
-  }
-  .block li{margin-bottom:6px}
-
-  .impact-line{
-    background:var(--terracotta-tint-2);
-    border-left:3px solid var(--terracotta);
-    padding:18px 22px;
-    font-size:15.5px;
-    color:var(--ink);
-    border-radius:0 6px 6px 0;
-  }
-  .impact-line b{color:var(--terracotta-deep)}
-
-  /* ===== Stat strip ===== */
-  .stat-strip{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-    margin-bottom:36px;
-  }
-  .stat-card{
-    background:var(--white);
-    border:1px solid var(--line);
-    border-radius:8px;
-    padding:20px 18px;
-  }
-  .stat-num{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:25px;
-    font-weight:500;
-    color:var(--terracotta-deep);
-    display:flex;
-    align-items:baseline;
-    gap:6px;
-    margin-bottom:6px;
-  }
-  .stat-num .arrow{color:var(--fog-blue);font-size:16px}
-  .stat-label{
-    font-size:13px;
-    color:var(--ink-faint);
+  .fchip i{width:9px;height:9px;border-radius:50%;flex:none}
+  .fchip:hover{transform:translateY(-1px);border-color:var(--terracotta)}
+  .fchip[aria-pressed="true"]{background:var(--ink);color:var(--white);border-color:var(--ink)}
+  .fchip:focus-visible{outline:2px solid var(--terracotta-deep);outline-offset:2px}
+  .plot-wrap{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:24px 20px}
+  .plot{width:100%;height:auto;display:block}
+  .pt{cursor:default;transition:opacity .3s ease}
+  .pt.dim{opacity:.13!important}
+  .pt circle{transition:r .25s cubic-bezier(.3,1.4,.5,1)}
+  .pt:hover circle.core{r:10}
+  .pt text{font-size:11.4px;font-family:'Poppins',sans-serif;fill:var(--ink);font-weight:500}
+  .axis-lab{font-family:'IBM Plex Mono',monospace;font-size:10.4px;fill:#A9AFAB;letter-spacing:.12em;text-transform:uppercase}
+  .quad-lab{font-family:'IBM Plex Mono',monospace;font-size:9.6px;fill:#CBD0CC;letter-spacing:.09em}
+  .map-foot{font-size:13px;color:var(--ink-faint);margin-top:14px}
+  .map-scroll-hint{
+    display:none;font-family:'IBM Plex Mono',monospace;font-size:10.5px;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-top:12px;
   }
 
-  .roadmap-row{
-    display:flex;
-    gap:0;
-    margin-bottom:36px;
-    border:1px solid var(--line);
-    border-radius:8px;
-    overflow:hidden;
+  /* ============ Case studies ============ */
+  .cases{padding-top:96px}
+  .case{padding:80px 0;border-top:1px solid var(--line)}
+  .case-top{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:start;margin-bottom:26px}
+  .case-idx{
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--terracotta-deep);
+    letter-spacing:.1em;margin-bottom:12px;display:flex;align-items:center;gap:10px;
   }
-  .roadmap-year{
-    flex:1;
-    padding:16px 16px;
-    border-right:1px solid var(--line);
+  .case-idx .bar{height:1px;width:30px;background:var(--terracotta)}
+  h3.case-title{font-size:clamp(23px,3.1vw,33px);font-weight:600;letter-spacing:-.025em;line-height:1.18;max-width:26ch}
+  .case-link{
+    display:inline-flex;align-items:center;gap:6px;margin-top:12px;
+    font-size:13.5px;font-weight:500;color:var(--terracotta-deep);
+    text-decoration:none;border-bottom:1px solid transparent;transition:border-color .18s,gap .18s;
   }
-  .roadmap-year:last-child{border-right:none}
-  .roadmap-year .yr{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:12px;
-    color:var(--terracotta-deep);
-    margin-bottom:6px;
-    display:block;
+  .case-link:hover{border-bottom-color:var(--terracotta-deep);gap:9px}
+  .case-meta{text-align:right;font-size:13px;color:var(--ink-faint);line-height:1.55;min-width:170px}
+  .case-meta .org{color:var(--ink);font-weight:600;font-size:13.5px}
+  .case-chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:36px}
+  .cchip{font-size:12px;padding:5px 12px;border-radius:100px;border:1px solid var(--line);background:var(--white);color:var(--ink-soft);font-weight:500}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-bottom:40px}
+  .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;margin-bottom:11px}
+  .cols p,.cols li{font-size:15.5px;color:var(--ink-soft)}
+  .cols ul{padding-left:17px}
+  .cols li{margin-bottom:8px}
+  .note{font-size:15px;color:var(--ink-soft);margin-bottom:34px;max-width:80ch}
+
+  /* Animated before/after bars */
+  .bars{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:36px}
+  .bar-card{background:var(--white);border:1px solid var(--line);border-radius:13px;padding:19px 18px}
+  .bar-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+  .bar-val{font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:600;color:var(--terracotta-deep);display:flex;align-items:baseline;gap:7px}
+  .bar-val .from{color:var(--ink-faint);font-size:14px;font-weight:400}
+  .bar-val .ar{color:var(--fog);font-size:12px}
+  .bar-track{height:6px;background:var(--paper-2);border-radius:100px;overflow:hidden;margin-bottom:6px;position:relative}
+  .bar-fill{height:100%;border-radius:100px;width:0;transition:width 1.2s cubic-bezier(.2,.7,.25,1)}
+  .bar-fill.pre{background:var(--fog-light);opacity:.55}
+  .bar-fill.post{background:linear-gradient(90deg,var(--terracotta),var(--terracotta-deep))}
+  .bar-lbl{font-size:12.5px;color:var(--ink-faint);margin-top:9px;line-height:1.4}
+  .bar-mini{font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--ink-faint);letter-spacing:.06em;width:30px;flex:none}
+  .bar-row{display:flex;align-items:center;gap:9px;margin-bottom:5px}
+  .bar-row .bar-track{flex:1;margin-bottom:0}
+
+  /* Simple stat cards */
+  .stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:36px}
+  .st{background:var(--white);border:1px solid var(--line);border-radius:13px;padding:22px 20px}
+  .st-n{font-family:'IBM Plex Mono',monospace;font-size:28px;font-weight:600;color:var(--terracotta-deep);letter-spacing:-.02em}
+  .st-l{font-size:12.5px;color:var(--ink-faint);margin-top:5px;line-height:1.45}
+
+  /* Bayesian flow */
+  .flow{display:flex;align-items:stretch;gap:0;margin-bottom:34px;flex-wrap:wrap;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--white);position:relative}
+  .flow-pulse{
+    position:absolute;top:0;left:0;height:3px;width:22%;
+    background:linear-gradient(90deg,transparent,var(--terracotta) 35%,var(--fog) 65%,transparent);
+    opacity:0;transform:translateX(-40%);pointer-events:none;
   }
-  .roadmap-year .desc{
-    font-size:13px;
-    color:var(--ink-soft);
-    line-height:1.45;
+  .flow.pulse-on .flow-pulse{opacity:1;animation:flowpulse 3s ease-in-out infinite}
+  @keyframes flowpulse{
+    0%{transform:translateX(-140%)}
+    100%{transform:translateX(540%)}
+  }
+  .flow-step{flex:1;min-width:180px;padding:22px 20px;border-right:1px solid var(--line);position:relative}
+  .flow-step:last-child{border-right:none;background:var(--terracotta-tint-2)}
+  .flow-k{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--terracotta-deep);margin-bottom:7px;display:block}
+  .flow-step b{display:block;font-size:15px;font-weight:600;margin-bottom:5px}
+  .flow-step p{font-size:12.8px;color:var(--ink-soft);line-height:1.5}
+
+  /* Roadmap */
+  .rmap{display:flex;border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:34px;background:var(--white)}
+  .ry{flex:1;padding:20px 18px;border-right:1px solid var(--line);transition:background .25s}
+  .ry:last-child{border-right:none}
+  .ry:hover{background:var(--terracotta-tint-2)}
+  .ry .yr{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--terracotta-deep);font-weight:600;display:block;margin-bottom:6px}
+  .ry .d{font-size:12.8px;color:var(--ink-soft);line-height:1.5}
+
+  /* Impact */
+  .impact{
+    background:linear-gradient(115deg,var(--terracotta-tint-2),var(--white));
+    border:1px solid var(--line);border-left:3px solid var(--terracotta);
+    padding:24px 26px;border-radius:0 14px 14px 0;font-size:15.5px;
+  }
+  .impact .ilbl{
+    font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.15em;
+    text-transform:uppercase;color:var(--terracotta-deep);display:block;margin-bottom:9px;font-weight:600;
   }
 
-  footer{
-    padding:48px 0 64px;
-    text-align:center;
+  /* ============ Footer CTA ============ */
+  .foot{position:relative;overflow:hidden;background:var(--ink);color:var(--white);padding:96px 0 44px;margin-top:40px}
+  .foot::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(70% 130% at 15% 0%,rgba(203,153,129,.4) 0%,transparent 60%),
+               radial-gradient(60% 120% at 88% 100%,rgba(90,110,146,.45) 0%,transparent 62%);
   }
-  footer p{
-    font-size:14px;
-    color:var(--ink-faint);
+  .foot .wrap{position:relative;z-index:2}
+  .foot h2{font-size:clamp(28px,4.4vw,46px);font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-bottom:18px;max-width:16ch}
+  .foot p{color:rgba(255,255,255,.72);font-size:16.5px;max-width:48ch;margin-bottom:34px}
+  .foot-btm{
+    margin-top:64px;padding-top:24px;border-top:1px solid rgba(255,255,255,.14);
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    font-size:13px;color:rgba(255,255,255,.5);
   }
-  footer a{
-    color:var(--terracotta-deep);
-    text-decoration:none;
-    font-weight:600;
-  }
+  .foot-btm a{color:rgba(255,255,255,.72);text-decoration:none}
+  .foot-btm a:hover{color:#fff}
 
-  @media (max-width:720px){
-    .case-grid{grid-template-columns:1fr}
-    .stat-strip{grid-template-columns:1fr}
-    .roadmap-row{flex-direction:column}
-    .roadmap-year{border-right:none;border-bottom:1px solid var(--line)}
-    .roadmap-year:last-child{border-bottom:none}
+  /* ============ Responsive ============ */
+  @media (max-width:900px){
+    .about-grid{grid-template-columns:1fr;gap:38px}
+    .cols{grid-template-columns:1fr;gap:28px}
+    .bars,.stats3{grid-template-columns:1fr}
+    .rmap{flex-direction:column}
+    .ry{border-right:none;border-bottom:1px solid var(--line)}
+    .ry:last-child{border-bottom:none}
+    .flow-step{border-right:none;border-bottom:1px solid var(--line);min-width:100%}
+    .flow-step:last-child{border-bottom:none}
+    .case-top{grid-template-columns:1fr}
     .case-meta{text-align:left}
-    .case-head{flex-direction:column}
-    .hero-card{padding:32px 24px}
-    .hero-btn{position:static;display:inline-block;margin-top:24px}
-    .hero{padding-bottom:44px}
-    .nav-name{font-size:15px}
-    .navwrap{padding:18px 20px;gap:12px}
-    .nav-links{gap:14px;font-size:13px}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 22px}
+    .navwrap{padding:0 22px}
+    .nav-links{gap:16px;font-size:13px}
+    .nav-links a.hide-sm{display:none}
+    .sec{padding:72px 0}
+    .cases{padding-top:64px}
+    .case{padding:56px 0}
+    .plot-wrap{overflow-x:auto;padding:18px 14px;-webkit-overflow-scrolling:touch}
+    .plot{min-width:720px}
+    .map-scroll-hint{display:block}
+    .hero{min-height:auto;padding-bottom:56px;display:block}
+    .hero-marks{position:relative;z-index:2;margin-top:44px;bottom:auto}
+    .hero-marks .wrap{gap:20px;flex-direction:column;align-items:flex-start}
+    .hmark b{font-size:16px}
+    .hero h1{max-width:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .rv{opacity:1;transform:none}
   }
 </style>
 </head>
 <body>
 
-<nav class="topnav">
+<div class="progress" id="progress"></div>
+
+<nav class="topnav" id="topnav">
   <div class="navwrap">
-    <span class="nav-name">Darya Likhareva</span>
+    <a href="#top" class="nav-name">Darya Likhareva<span class="dot">.</span></a>
     <div class="nav-links">
-      <a href="https://likhareva.com">Home</a>
-      <a href="https://www.linkedin.com/in/likhareva/" aria-label="LinkedIn">LinkedIn</a>
-      <a href="#" class="current">Case Studies</a>
+      <a href="#about" class="hide-sm">About</a>
+      <a href="#methods" class="hide-sm">Methods</a>
+      <a href="#work">Work</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
     </div>
   </div>
 </nav>
 
-<section class="hero">
-  <div class="hero-bg"></div>
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="hero-bg"><div class="grain"></div></div>
   <div class="wrap hero-inner">
-    <div class="hero-card">
-      <span class="eyebrow">Research &amp; Case Studies</span>
-      <h1>Deep dives into the work.</h1>
-      <p class="hero-sub">Three projects spanning program evaluation, research operations, and technical product management — each with the problem, the method, and what changed because of it.</p>
+    <div class="hero-eyebrow">Research-driven product strategist</div>
+    <h1>Hi, I'm <span class="accent">Darya</span>.</h1>
+    <p class="hero-sub">I work at the intersection of product strategy, data science, and UX research — turning complex findings into things teams can actually act on.</p>
+    <div class="hero-actions">
+      <a href="#work" class="btn btn-primary">See the work <span class="arw">→</span></a>
+      <a href="#about" class="btn btn-ghost">About me</a>
     </div>
-    <a class="hero-btn" href="https://www.linkedin.com/in/likhareva/">LinkedIn</a>
+  </div>
+  <div class="hero-marks">
+    <div class="wrap">
+      <div class="hmark">Domains<b>Public Health · Biotech · Pharma · SaaS</b></div>
+      <div class="hmark">Core Strengths<b>UX Research · Data Science · Product Strategy</b></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ ABOUT ============ -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="rv">
+      <div class="kicker">About</div>
+      <h2 class="sec-title">How I got here.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text rv">
+        <p class="lead">My path started in public health.</p>
+        <p>That grew into a research focus on people and systems, which took me to UC Berkeley's MIDS program — building on the early research roots with formal training in data science and analytical rigor.</p>
+        <p>From there, through varied experience, I grew as a UX researcher, applied data science and machine learning to research problems, and moved into product direction and strategy — where all three meet.</p>
+        <p>That data science grounding is what makes me a stronger UX researcher. I stay closely tied to AI and to applying data science solutions to UX problems.</p>
+      </div>
+      <div class="path rv">
+        <span class="path-label">The path here</span>
+        <ol>
+          <li><b>Public Health — SJSU</b><p>Undergraduate degree</p></li>
+          <li><b>Data Science — UC Berkeley MIDS</b><p>Master's degree</p></li>
+          <li><b>UX Research</b><p>Applied research focused on people and systems</p></li>
+          <li><b>NLP &amp; ML</b><p>Applied data science, analytics, and solutions to UX problems</p></li>
+          <li><b>Product Direction and Strategy</b><p>Where data science, UX, and product strategy meet</p></li>
+        </ol>
+      </div>
+    </div>
   </div>
 </section>
 
-<div class="wrap">
-  <section class="method-spectrum">
-    <p class="label">Methods represented across these three projects</p>
-    <div class="method-row">
-      <span class="method-chip"><b>Longitudinal survey design</b></span>
-      <span class="method-chip"><b>Quantitative outcome analysis</b></span>
-      <span class="method-chip"><b>1:1 interviews</b></span>
-      <span class="method-chip"><b>Usability testing</b></span>
-      <span class="method-chip"><b>Stakeholder synthesis</b></span>
-      <span class="method-chip"><b>Statistical model QA</b></span>
+<!-- ============ METHODS MAP ============ -->
+<section class="sec mapsec" id="methods">
+  <div class="wrap">
+    <div class="rv">
+      <div class="kicker">Methods</div>
+      <h2 class="sec-title">My toolkit.</h2>
     </div>
-  </section>
-
-  <!-- ===================== CASE 1 ===================== -->
-  <section class="case" id="gbi">
-    <div class="case-head">
-      <div>
-        <span class="case-num">01 — Program Evaluation</span>
-        <h2 class="case-title">Does guaranteed income change outcomes for youth aging out of foster care?</h2>
-      </div>
-      <div class="case-meta">
-        <div class="org">County Government Agency</div>
-        <div>Guaranteed Income Pilot Evaluation</div>
-        <div>2020 – 2025</div>
-      </div>
+    <div class="map-intro rv">
+      <p>My background is mixed methods, and I flourish in that range and experience.</p>
+      <p>This map shows the breadth of my expertise — spanning all four quadrants, from interviews and co-design sessions to A/B testing, NLP and experimentation.</p>
+      <p>My entire professional experience has been fast, rapid applied research — gained working in small, agile teams and through my consulting background.</p>
     </div>
 
-    <div class="case-tags">
-      <span class="tag">Longitudinal survey design</span>
-      <span class="tag">Quantitative outcome analysis</span>
-      <span class="tag">Digital storytelling</span>
-      <span class="tag">Stakeholder coordination</span>
+    <div class="map-controls rv">
+      <span class="filter-lbl">Filter</span>
+      <button class="fchip" data-f="all" aria-pressed="true">All methods</button>
+      <button class="fchip" data-f="qual" aria-pressed="false"><i style="background:#9C6B52"></i>Qualitative</button>
+      <button class="fchip" data-f="quant" aria-pressed="false"><i style="background:#5A6E92"></i>Quantitative</button>
+      <button class="fchip" data-f="mixed" aria-pressed="false"><i style="background:#B98A6E"></i>Mixed</button>
     </div>
 
-    <div class="case-grid">
-      <div class="block">
-        <h3>Problem</h3>
-        <p>Former foster youth face disproportionate risk of homelessness and financial instability once they age out of the system. The agency needed rigorous evidence on whether unconditional monthly cash payments — $1,200/month for two years — measurably changed housing, education, and employment outcomes, in order to decide whether to expand the program.</p>
+    <div class="plot-wrap rv">
+      <svg class="plot" viewBox="0 0 900 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Scatter plot of research methods positioned across qualitative to quantitative and exploratory to evaluative axes">
+        <rect x="70" y="50" width="790" height="490" fill="#FCFAF8"/>
+        <g stroke="#F1EAE3" stroke-width="1">
+          <line x1="70" y1="172" x2="860" y2="172"/>
+          <line x1="70" y1="417" x2="860" y2="417"/>
+          <line x1="268" y1="50" x2="268" y2="540"/>
+          <line x1="662" y1="50" x2="662" y2="540"/>
+        </g>
+        <g stroke="#E2D8CE" stroke-width="1.4">
+          <line x1="70" y1="295" x2="860" y2="295"/>
+          <line x1="465" y1="50" x2="465" y2="540"/>
+        </g>
+        <text class="axis-lab" x="70" y="566">Qualitative</text>
+        <text class="axis-lab" x="860" y="566" text-anchor="end">Quantitative</text>
+        <text class="axis-lab" x="465" y="34" text-anchor="middle">Exploratory</text>
+        <text class="axis-lab" x="465" y="592" text-anchor="middle">Evaluative</text>
+        <text class="quad-lab" x="82" y="70">discover</text>
+        <text class="quad-lab" x="848" y="70" text-anchor="end">size &amp; scope</text>
+        <text class="quad-lab" x="82" y="530">interpret</text>
+        <text class="quad-lab" x="848" y="530" text-anchor="end">measure &amp; validate</text>
+
+        <g id="pts">
+          <g class="pt" data-cat="qual">
+            <circle class="halo" cx="135" cy="115" r="20" fill="#9C6B52" opacity=".13"/>
+            <circle class="core" cx="135" cy="115" r="8" fill="#9C6B52"/>
+            <text x="135" y="90" text-anchor="middle">Contextual inquiry</text>
+          </g>
+          <g class="pt" data-cat="mixed">
+            <circle class="halo" cx="300" cy="98" r="20" fill="#B98A6E" opacity=".13"/>
+            <circle class="core" cx="300" cy="98" r="8" fill="#B98A6E"/>
+            <text x="300" y="73" text-anchor="middle">Participatory co-design</text>
+          </g>
+          <g class="pt" data-cat="quant">
+            <circle class="halo" cx="690" cy="103" r="20" fill="#5A6E92" opacity=".13"/>
+            <circle class="core" cx="690" cy="103" r="8" fill="#5A6E92"/>
+            <text x="690" y="78" text-anchor="middle">Survey design</text>
+          </g>
+          <g class="pt" data-cat="qual">
+            <circle class="halo" cx="215" cy="196" r="20" fill="#9C6B52" opacity=".13"/>
+            <circle class="core" cx="215" cy="196" r="8" fill="#9C6B52"/>
+            <text x="215" y="228" text-anchor="middle">Focus groups</text>
+          </g>
+          <g class="pt" data-cat="mixed">
+            <circle class="halo" cx="425" cy="178" r="20" fill="#B98A6E" opacity=".13"/>
+            <circle class="core" cx="425" cy="178" r="8" fill="#B98A6E"/>
+            <text x="425" y="153" text-anchor="middle">Stakeholder synthesis</text>
+          </g>
+          <g class="pt" data-cat="mixed">
+            <circle class="halo" cx="565" cy="212" r="20" fill="#B98A6E" opacity=".13"/>
+            <circle class="core" cx="565" cy="212" r="8" fill="#B98A6E"/>
+            <text x="565" y="244" text-anchor="middle">NLP &amp; text analytics</text>
+          </g>
+          <g class="pt" data-cat="quant">
+            <circle class="halo" cx="812" cy="186" r="20" fill="#5A6E92" opacity=".13"/>
+            <circle class="core" cx="812" cy="186" r="8" fill="#5A6E92"/>
+            <text x="855" y="218" text-anchor="end">Segmentation &amp; clustering</text>
+          </g>
+          <g class="pt" data-cat="qual">
+            <circle class="halo" cx="128" cy="262" r="20" fill="#9C6B52" opacity=".13"/>
+            <circle class="core" cx="128" cy="262" r="8" fill="#9C6B52"/>
+            <text x="78" y="294" text-anchor="start">Practitioner interviews</text>
+          </g>
+          <g class="pt" data-cat="mixed">
+            <circle class="halo" cx="378" cy="334" r="20" fill="#B98A6E" opacity=".13"/>
+            <circle class="core" cx="378" cy="334" r="8" fill="#B98A6E"/>
+            <text x="378" y="309" text-anchor="middle">Rapid-cycle studies</text>
+          </g>
+          <g class="pt" data-cat="quant">
+            <circle class="halo" cx="640" cy="322" r="20" fill="#5A6E92" opacity=".13"/>
+            <circle class="core" cx="640" cy="322" r="8" fill="#5A6E92"/>
+            <text x="640" y="297" text-anchor="middle">Conjoint / MaxDiff</text>
+          </g>
+          <g class="pt" data-cat="qual">
+            <circle class="halo" cx="162" cy="400" r="20" fill="#9C6B52" opacity=".13"/>
+            <circle class="core" cx="162" cy="400" r="8" fill="#9C6B52"/>
+            <text x="162" y="432" text-anchor="middle">Usability testing</text>
+          </g>
+          <g class="pt" data-cat="quant">
+            <circle class="halo" cx="726" cy="406" r="20" fill="#5A6E92" opacity=".13"/>
+            <circle class="core" cx="726" cy="406" r="8" fill="#5A6E92"/>
+            <text x="726" y="438" text-anchor="middle">A/B &amp; experimentation</text>
+          </g>
+          <g class="pt" data-cat="quant">
+            <circle class="halo" cx="470" cy="452" r="20" fill="#5A6E92" opacity=".13"/>
+            <circle class="core" cx="470" cy="452" r="8" fill="#5A6E92"/>
+            <text x="470" y="484" text-anchor="middle">Longitudinal outcomes</text>
+          </g>
+          <g class="pt" data-cat="quant">
+            <circle class="halo" cx="812" cy="492" r="20" fill="#5A6E92" opacity=".13"/>
+            <circle class="core" cx="812" cy="492" r="8" fill="#5A6E92"/>
+            <text x="855" y="462" text-anchor="end">Statistical model</text>
+          </g>
+          <g class="pt" data-cat="quant">
+            <circle class="halo" cx="580" cy="392" r="20" fill="#5A6E92" opacity=".13"/>
+            <circle class="core" cx="580" cy="392" r="8" fill="#5A6E92"/>
+            <text x="580" y="367" text-anchor="middle">Causal inference</text>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <span class="map-scroll-hint rv">← Swipe the map to explore →</span>
+  </div>
+</section>
+
+<!-- ============ WORK ============ -->
+<section class="cases" id="work">
+  <div class="wrap rv">
+    <div class="kicker">Selected work</div>
+    <h2 class="sec-title">Three samples of my work.</h2>
+    <p class="sec-sub">Each one below: what was at stake, how I approached it, and what actually changed as a result.</p>
+  </div>
+
+  <!-- CASE 1 -->
+  <div class="wrap">
+    <article class="case rv">
+      <div class="case-top">
+        <div>
+          <div class="case-idx"><span class="bar"></span> 01 · Program evaluation</div>
+          <h3 class="case-title">Does guaranteed income change outcomes for youth aging out of foster care?</h3>
+          <a class="case-link" href="https://ceo.santaclaracounty.gov/divisions-and-offices/administration/guaranteed-basic-income-gbi-pilot-programs" target="_blank" rel="noopener">View the program <span class="arw">↗</span></a>
+        </div>
       </div>
-      <div class="block">
-        <h3>My Approach</h3>
-        <ul>
-          <li>Involved from project initiation, coordinating needs across the agency and partner-organization stakeholders</li>
-          <li>Defined scope and programmed a pre/post evaluation design: a baseline survey instrument and matched follow-up survey for a cohort of 122 former foster youth</li>
-          <li>Owned quantitative analysis and reporting across housing, education, employment, and financial-security outcome domains</li>
-          <li>Worked with participants to co-create digital stories (interactive video, poetry, photography) that made the quantitative findings tangible to funders and policymakers</li>
-        </ul>
+      <div class="case-chips">
+        <span class="cchip">Longitudinal survey design</span>
+        <span class="cchip">Quantitative outcome analysis</span>
+        <span class="cchip">Digital storytelling</span>
+        <span class="cchip">Stakeholder coordination</span>
+      </div>
+
+      <div class="cols">
+        <div>
+          <div class="lbl">The problem</div>
+          <p>Former foster youth face disproportionate risk of homelessness and financial instability once they age out of the system. A government agency needed evidence on whether unconditional monthly cash payments of $1,200/month for two years measurably changed housing, education, and employment outcomes, in order to decide whether to expand the program.</p>
+        </div>
+        <div>
+          <div class="lbl">My approach</div>
+          <ul>
+            <li>Involved from project initiation, coordinating needs across the agency and partner organizations</li>
+            <li>Defined scope and programmed a pre/post design: baseline instrument plus matched follow-up survey, n=122</li>
+            <li>Owned all quantitative analysis across housing, education, employment, and financial-security domains</li>
+            <li>Co-created digital stories with participants (video, poetry, photography) that made the numbers land with funders and policymakers</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="lbl">Method note</div>
+      <p class="note">We surveyed the same 122 respondents every month, from enrollment through follow-up roughly two years later, tracking eight quantitative outcome measures over time.</p>
+
+      <div class="lbl">What the data showed — baseline → follow-up</div>
+      <div class="bars">
+        <div class="bar-card">
+          <div class="bar-head"><div class="bar-val"><span class="from" data-count="13">0</span>%<span class="ar">→</span><span class="to" data-count="33">0</span>%</div></div>
+          <div class="bar-row"><span class="bar-mini">pre</span><div class="bar-track"><div class="bar-fill pre" data-w="13"></div></div></div>
+          <div class="bar-row"><span class="bar-mini">post</span><div class="bar-track"><div class="bar-fill post" data-w="33"></div></div></div>
+          <div class="bar-lbl">Full-time school enrollment</div>
+        </div>
+        <div class="bar-card">
+          <div class="bar-head"><div class="bar-val"><span class="from" data-count="11">0</span>%<span class="ar">→</span><span class="to" data-count="5">0</span>%</div></div>
+          <div class="bar-row"><span class="bar-mini">pre</span><div class="bar-track"><div class="bar-fill pre" data-w="11"></div></div></div>
+          <div class="bar-row"><span class="bar-mini">post</span><div class="bar-track"><div class="bar-fill post" data-w="5"></div></div></div>
+          <div class="bar-lbl">Literal homelessness</div>
+        </div>
+        <div class="bar-card">
+          <div class="bar-head"><div class="bar-val"><span class="from" data-count="44">0</span>%<span class="ar">→</span><span class="to" data-count="58">0</span>%</div></div>
+          <div class="bar-row"><span class="bar-mini">pre</span><div class="bar-track"><div class="bar-fill pre" data-w="44"></div></div></div>
+          <div class="bar-row"><span class="bar-mini">post</span><div class="bar-track"><div class="bar-fill post" data-w="58"></div></div></div>
+          <div class="bar-lbl">Full-time employment</div>
+        </div>
+        <div class="bar-card">
+          <div class="bar-head"><div class="bar-val"><span class="from" data-count="0">0</span>%<span class="ar">→</span><span class="to" data-count="3">0</span>%</div></div>
+          <div class="bar-row"><span class="bar-mini">pre</span><div class="bar-track"><div class="bar-fill pre" data-w="0"></div></div></div>
+          <div class="bar-row"><span class="bar-mini">post</span><div class="bar-track"><div class="bar-fill post" data-w="3"></div></div></div>
+          <div class="bar-lbl">Home ownership</div>
+        </div>
+        <div class="bar-card">
+          <div class="bar-head"><div class="bar-val"><span class="from" data-count="72">0</span>%<span class="ar">→</span><span class="to" data-count="88">0</span>%</div></div>
+          <div class="bar-row"><span class="bar-mini">pre</span><div class="bar-track"><div class="bar-fill pre" data-w="72"></div></div></div>
+          <div class="bar-row"><span class="bar-mini">post</span><div class="bar-track"><div class="bar-fill post" data-w="88"></div></div></div>
+          <div class="bar-lbl">Holding a checking account</div>
+        </div>
+        <div class="bar-card">
+          <div class="bar-head"><div class="bar-val"><span class="from" data-count="56">0</span>%<span class="ar">→</span><span class="to" data-count="60">0</span>%</div></div>
+          <div class="bar-row"><span class="bar-mini">pre</span><div class="bar-track"><div class="bar-fill pre" data-w="56"></div></div></div>
+          <div class="bar-row"><span class="bar-mini">post</span><div class="bar-track"><div class="bar-fill post" data-w="60"></div></div></div>
+          <div class="bar-lbl">In a self-reported meaningful career</div>
+        </div>
+      </div>
+
+      <div class="impact">
+        <span class="ilbl">Impact</span>
+        Findings contributed directly to the agency's decision to extend the program and fund it at a larger scale — a second cohort began payments the following year, and the model has since expanded into a nine-pilot regional guaranteed-income effort.
+      </div>
+    </article>
+
+    <!-- CASE 2 -->
+    <article class="case rv">
+      <div class="case-top">
+        <div>
+          <div class="case-idx"><span class="bar"></span> 02 · Research program redesign</div>
+          <h3 class="case-title">Building a research engine that kept HR leaders ahead of the trends that mattered.</h3>
+          <a class="case-link" href="https://worldatwork.org/research/mini-study-emerging-insights-on-ai-in-total-rewards" target="_blank" rel="noopener">View a sample study <span class="arw">↗</span></a>
+        </div>
+      </div>
+      <div class="case-chips">
+        <span class="cchip">Survey research</span>
+        <span class="cchip">Practitioner interviews</span>
+        <span class="cchip">Rapid-cycle studies</span>
+        <span class="cchip">Thought leadership</span>
+      </div>
+
+      <div class="cols">
+        <div>
+          <div class="lbl">The problem</div>
+          <p>The organization's research process was built for long, infrequent reports — by the time a study shipped, the workforce and compensation trends it covered had often already moved on. Leadership needed research HR leaders could act on while a trend was still current, not months later.</p>
+        </div>
+        <div>
+          <div class="lbl">My approach</div>
+          <ul>
+            <li>Led the shift from occasional long-form reports to a repeatable model of bite-sized, quick-turnaround studies</li>
+            <li>Designed and fielded a structured quantitative survey for each study, paired with practitioner interviews</li>
+            <li>Gathered and analyzed the data myself, then built the infographics used to publish each study</li>
+            <li>Owned the process end to end — not just the system, but the research, the writing, and the design in every cycle</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="impact">
+        <span class="ilbl">Impact</span>
+        The faster survey-plus-interview cadence let the organization publish credible research while a trend was still forming rather than after the fact — establishing its research team as a go-to source HR leaders turned to for what was current in their space, and building a repeatable model the organization continued to run studies on.
+      </div>
+    </article>
+
+    <!-- CASE 3 -->
+    <article class="case rv">
+      <div class="case-top">
+        <div>
+          <div class="case-idx"><span class="bar"></span> 03 · Technical product management</div>
+          <h3 class="case-title">Making a marketing-mix model usable for the people who act on it.</h3>
+        </div>
+      </div>
+      <div class="case-chips">
+        <span class="cchip">Technical PM</span>
+        <span class="cchip">Usability testing</span>
+        <span class="cchip">Statistical model</span>
+      </div>
+
+      <div class="cols">
+        <div>
+          <div class="lbl">The problem</div>
+          <p>The client needed a single source of truth for marketing ROI across every channel — statistically rigorous enough for Data Science and Finance to trust, but interpretable enough for marketing teams to actually use in planning decisions. The platform estimates incremental sales impact, ROI, and marginal ROI at the channel level, with more granular breakdowns available underneath.</p>
+        </div>
+        <div>
+          <div class="lbl">My approach</div>
+          <ul>
+            <li>Served as the vendor-side product lead — responsible for the platform's scientific foundation, building the product end to end, and supporting the client's roadmap and decision-making</li>
+            <li>Ran usability sessions directly with marketing-team users to understand how they actually worked with the platform</li>
+            <li>Reviewed outputs from both a statistical and a user perspective, surfacing where results didn't match how people needed to act on them</li>
+            <li>Guided decisions on methodology, features, and the level of detail exposed — balancing rigor with usability</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="lbl">The model</div>
+      <p class="note">Built on Google Meridian, an open-source Bayesian marketing-mix model.</p>
+      <div class="flow">
+        <div class="flow-pulse"></div>
+        <div class="flow-step">
+          <span class="flow-k">Input</span>
+          <b>Marketing &amp; business data</b>
+          <p>Spend and performance context across channels.</p>
+        </div>
+        <div class="flow-step">
+          <span class="flow-k">Engine</span>
+          <b>Google Meridian</b>
+          <p>A Bayesian model reasons about the data probabilistically.</p>
+        </div>
+        <div class="flow-step">
+          <span class="flow-k">Output</span>
+          <b>Impact &amp; ROI by channel</b>
+          <p>Incremental sales impact, ROI, and marginal ROI.</p>
+        </div>
+      </div>
+
+      <p class="note">My contribution: I helped validate the model's results, built out the features the client requested, and proposed additional features that shaped the roadmap. I also helped develop an optimizer that let marketing teams plan spending scenarios ahead of time — supporting the reallocation of $500M in marketing spend toward higher-performing channels.</p>
+
+      <div class="lbl">Platform at scale</div>
+      <div class="stats3">
+        <div class="st"><div class="st-n" data-count="15" data-suffix="+">0</div><div class="st-l">Pharmaceutical brands supported by the platform</div></div>
+        <div class="st"><div class="st-n">1Q</div><div class="st-l">Modeling turnaround — fresh enough for marketers to act on, not months stale</div></div>
+        <div class="st"><div class="st-n">Live</div><div class="st-l">Optimizer let marketing teams test planned spend scenarios in real time before committing budget</div></div>
+      </div>
+
+      <div class="impact">
+        <span class="ilbl">Key finding &amp; impact</span>
+        The optimizer supported reallocating $500M in marketing spend toward higher-performing channels. From there, I kept expanding the platform — more features, more granular data — so it could deliver faster, more actionable insight for both technical and non-technical users, soliciting ongoing feedback alongside formal usability studies throughout.
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot" id="contact">
+  <div class="wrap">
+    <div class="rv">
+      <div class="kicker" style="color:var(--gold)">Get in touch</div>
+      <h2>Let's keep in touch.</h2>
+      <p>Happy to walk through any of this work in more depth.</p>
+      <div class="hero-actions">
+        <a href="https://www.linkedin.com/in/likhareva/" class="btn btn-primary">Connect on LinkedIn <span class="arw">→</span></a>
+        <a href="mailto:daryalikha@gmail.com" class="btn btn-ghost">Email me</a>
       </div>
     </div>
-
-    <h3 style="margin-bottom:14px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;">Method note</h3>
-    <p style="font-size:15.5px;color:var(--ink-soft);margin-bottom:28px;">Longitudinal pre/post design, n=122. Baseline survey fielded at enrollment; matched follow-up survey fielded roughly two years later, tracking the same respondents across eight quantitative outcome measures.</p>
-
-    <h3 style="margin-bottom:14px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;">Key findings — baseline to follow-up (n=122)</h3>
-    <div class="stat-strip">
-      <div class="stat-card">
-        <div class="stat-num">13% <span class="arrow">→</span> 33%</div>
-        <div class="stat-label">Full-time school enrollment</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">11% <span class="arrow">→</span> 5%</div>
-        <div class="stat-label">Literal homelessness</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">44% <span class="arrow">→</span> 58%</div>
-        <div class="stat-label">Full-time employment</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">0% <span class="arrow">→</span> 3%</div>
-        <div class="stat-label">Home ownership</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">72% <span class="arrow">→</span> 88%</div>
-        <div class="stat-label">Holding a checking account</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">56% <span class="arrow">→</span> 60%</div>
-        <div class="stat-label">In a self-reported meaningful career</div>
-      </div>
+    <div class="foot-btm">
+      <span>© 2026 Darya Likhareva</span>
+      <span><a href="mailto:daryalikha@gmail.com">daryalikha@gmail.com</a> · <a href="https://www.linkedin.com/in/likhareva/">LinkedIn</a></span>
     </div>
+  </div>
+</footer>
 
-    <div class="impact-line">
-      <b>Impact:</b> Findings contributed directly to the agency's decision to extend the program and fund it at a larger scale — a second cohort of former foster youth began payments the following year, and the model has since expanded into a nine-pilot regional guaranteed-income effort.
-    </div>
-  </section>
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  <!-- ===================== CASE 2 ===================== -->
-  <section class="case" id="worldatwork">
-    <div class="case-head">
-      <div>
-        <span class="case-num">02 — Research Program Redesign</span>
-        <h2 class="case-title">Building a research engine that kept HR leaders ahead of the trends that mattered.</h2>
-      </div>
-      <div class="case-meta">
-        <div class="org">National Research Association</div>
-        <div>Rapid-Cycle Research Program</div>
-      </div>
-    </div>
+  /* Scroll progress + nav state */
+  var prog = document.getElementById('progress');
+  var nav  = document.getElementById('topnav');
+  function onScroll(){
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    prog.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
 
-    <div class="case-tags">
-      <span class="tag">Survey research</span>
-      <span class="tag">Practitioner interviews</span>
-      <span class="tag">Rapid-cycle studies</span>
-      <span class="tag">Thought leadership</span>
-    </div>
+  /* Reveal on scroll */
+  var revs = document.querySelectorAll('.rv');
+  if (reduce) {
+    revs.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var ro = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); ro.unobserve(e.target); }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -60px 0px'});
+    revs.forEach(function(el){ ro.observe(el); });
+  }
 
-    <div class="case-grid">
-      <div class="block">
-        <h3>Problem</h3>
-        <p>The organization's research process was built for long, infrequent reports — by the time a study shipped, the workforce and compensation trends it covered had often already moved on. Leadership needed research that HR leaders could act on while a trend was still current, not months later.</p>
-      </div>
-      <div class="block">
-        <h3>My Approach</h3>
-        <p>I led the shift from occasional long-form reports to a repeatable model of bite-sized, quick-turnaround studies. For each study, I designed and fielded a structured quantitative survey and paired it with practitioner interviews, triangulating the two to move from raw data to a credible, publishable point of view fast. Run consistently, this became the organization's core thought-leadership engine on emerging HR and total-rewards topics.</p>
-      </div>
-    </div>
+  /* Animate bars when in view */
+  function animateCount(el, target, dur){
+    if (reduce){ el.textContent = target; return; }
+    var start = performance.now();
+    function tick(now){
+      var p = Math.min((now - start)/dur, 1);
+      var eased = 1 - Math.pow(1-p, 3);
+      el.textContent = Math.round(target * eased);
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  var barObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) return;
+      var fills = e.target.querySelectorAll('.bar-fill');
+      fills.forEach(function(f, i){
+        var w = Math.max(parseFloat(f.dataset.w) || 0, 1.5);
+        setTimeout(function(){ f.style.width = w + '%'; }, reduce ? 0 : i * 90);
+      });
+      var nums = e.target.querySelectorAll('.bar-val [data-count]');
+      nums.forEach(function(n){
+        var target = parseInt(n.dataset.count, 10);
+        setTimeout(function(){ animateCount(n, target, 1100); }, reduce ? 0 : 90);
+      });
+      barObs.unobserve(e.target);
+    });
+  }, {threshold:0.3});
+  document.querySelectorAll('.bar-card').forEach(function(c){ barObs.observe(c); });
 
-    <div class="impact-line">
-      <b>Impact:</b> The faster survey-plus-interview cadence let the organization publish credible research while a trend was still forming rather than after the fact, establishing its research team as a go-to source HR leaders turned to for what was current in their space — and building a repeatable model the organization continued to run studies on.
-    </div>
-  </section>
+  /* Count-up stats */
+  var cObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) return;
+      var el = e.target, target = parseInt(el.dataset.count,10), sfx = el.dataset.suffix || '';
+      if (reduce){ el.textContent = target + sfx; cObs.unobserve(el); return; }
+      var start = performance.now(), dur = 900;
+      function tick(now){
+        var p = Math.min((now - start)/dur, 1);
+        var eased = 1 - Math.pow(1-p, 3);
+        el.textContent = Math.round(target * eased) + (p === 1 ? sfx : '');
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      cObs.unobserve(el);
+    });
+  }, {threshold:0.5});
+  document.querySelectorAll('[data-count]').forEach(function(el){ cObs.observe(el); });
 
-  <!-- ===================== CASE 3 ===================== -->
-  <section class="case" id="mars">
-    <div class="case-head">
-      <div>
-        <span class="case-num">03 — Technical Product Management</span>
-        <h2 class="case-title">Making a Bayesian marketing-mix model usable for the people who have to act on it.</h2>
-      </div>
-      <div class="case-meta">
-        <div class="org">Data &amp; Analytics Consultancy</div>
-        <div>Marketing-Mix Measurement Platform</div>
-        <div>Client: Global Pharmaceutical Company</div>
-        <div>2023 – 2026</div>
-      </div>
-    </div>
+  /* Methods map: filter chips */
+  var chips = document.querySelectorAll('.fchip');
+  chips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      var f = chip.dataset.f;
+      chips.forEach(function(c){ c.setAttribute('aria-pressed', c === chip ? 'true' : 'false'); });
+      document.querySelectorAll('#pts .pt').forEach(function(pt){
+        pt.classList.toggle('dim', f !== 'all' && pt.dataset.cat !== f);
+      });
+    });
+  });
 
-    <div class="case-tags">
-      <span class="tag">Bayesian modeling</span>
-      <span class="tag">Technical PM</span>
-      <span class="tag">Usability testing</span>
-      <span class="tag">Statistical model QA</span>
-    </div>
+  /* Methods map: stagger points in */
+  var pts = document.querySelectorAll('#pts .pt');
+  pts.forEach(function(p){ p.style.opacity = reduce ? 1 : 0; p.style.transition = 'opacity .5s ease'; });
+  var mObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) return;
+      pts.forEach(function(p, i){
+        setTimeout(function(){ p.style.opacity = 1; }, reduce ? 0 : i * 110);
+      });
+      mObs.unobserve(e.target);
+    });
+  }, {threshold:0.25});
+  var plot = document.querySelector('.plot');
+  if (plot) mObs.observe(plot);
 
-    <div class="case-grid">
-      <div class="block">
-        <h3>Problem</h3>
-        <p>The client needed a single source of truth for marketing ROI across every channel — statistically rigorous enough for Data Science and Finance to trust, but interpretable enough for marketing teams to actually use in planning decisions. The platform uses Bayesian marketing-mix modeling to estimate incremental sales impact and ROI at the channel level from aggregated, geo-level time-series data.</p>
-      </div>
-      <div class="block">
-        <h3>My Approach</h3>
-        <ul>
-          <li>Served as overall technical PM, guiding the roadmap by combining data science fluency with UX judgment</li>
-          <li>Ran multiple usability sessions directly with the client's marketing teams — the platform's end users</li>
-          <li>Reviewed model outputs from both a statistical and a business/user perspective, and helped resolve underlying data issues</li>
-          <li>Guided decisions on modeling methodology, new features, and the specific data cuts and granularity the platform exposed</li>
-        </ul>
-      </div>
-    </div>
+  /* Flow diagram: trigger pulse animation on scroll */
+  var flowObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('pulse-on'); }
+    });
+  }, {threshold:0.4});
+  document.querySelectorAll('.flow').forEach(function(f){ flowObs.observe(f); });
 
-    <h3 style="margin-bottom:14px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;">Quantitative approach</h3>
-    <p style="font-size:15.5px;color:var(--ink-soft);margin-bottom:28px;">The model follows a Bayesian workflow: industry benchmarks and prior experiments set the prior, channel-level spend/impressions/reach/sales/competitor data form the evidence, and the two combine into a posterior, probability-weighted ROI estimate per channel. My role included pushing the model from national-aggregate estimation to geo-level (zip3) granularity, shifting the core exposure metric from raw impressions to reach and frequency, and moving validation from simple correlation to calibration against real lift tests — all reviewed jointly with Data Science and Finance before release.</p>
-
-    <h3 style="margin-bottom:14px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;">Platform at scale</h3>
-    <div class="stat-strip">
-      <div class="stat-card">
-        <div class="stat-num">8+</div>
-        <div class="stat-label">Priority brands modeled at indication level</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">3</div>
-        <div class="stat-label">Independent validation layers — DS, Finance, QA</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">Q1</div>
-        <div class="stat-label">Data-latency target, down from 3+ months</div>
-      </div>
-    </div>
-
-    <h3 style="margin-bottom:14px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;">Model evolution under this work</h3>
-    <div class="roadmap-row">
-      <div class="roadmap-year"><span class="yr">2023</span><div class="desc">Constrained regression — baseline established</div></div>
-      <div class="roadmap-year"><span class="yr">2024</span><div class="desc">Lightweight Bayesian pilot — first geo-level experiments</div></div>
-      <div class="roadmap-year"><span class="yr">2025</span><div class="desc">Full Bayesian MMM — geo-level, lift-test calibrated</div></div>
-      <div class="roadmap-year"><span class="yr">2026</span><div class="desc">AI-enhanced platform — GenAI summaries, scenario planning</div></div>
-    </div>
-
-    <div class="impact-line">
-      <b>Key finding &amp; impact:</b> Usability sessions with marketing users surfaced that a key optimization feature was underused because its language and complexity created a barrier to entry. Refining the feature and simplifying its language directly increased adoption of the tool among marketing teams — without weakening the statistical rigor underneath it.
-    </div>
-  </section>
-
-  <footer>
-    <p>Want to talk through any of these in more depth? <a href="https://www.linkedin.com/in/likhareva/">Reach out on LinkedIn</a></p>
-  </footer>
-</div>
-
+  /* Active nav link */
+  var secs = ['about','methods','work','contact']
+    .map(function(id){ return document.getElementById(id); })
+    .filter(Boolean);
+  var navA = {};
+  document.querySelectorAll('.nav-links a').forEach(function(a){
+    var h = a.getAttribute('href');
+    if (h && h.charAt(0) === '#') navA[h.slice(1)] = a;
+  });
+  var sObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) return;
+      Object.keys(navA).forEach(function(k){ navA[k].classList.remove('active'); });
+      var a = navA[e.target.id];
+      if (a) a.classList.add('active');
+    });
+  }, {threshold:0.25, rootMargin:'-20% 0px -50% 0px'});
+  secs.forEach(function(s){ sObs.observe(s); });
+})();
+</script>
 </body>
 </html>
