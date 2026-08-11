@@ -10,13 +10,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --terracotta:#CB9981;
-    --terracotta-deep:#9C6B52;
-    --terracotta-tint:#F3E7DE;
-    --terracotta-tint-2:#F9F2ED;
-    --fog:#5A6E92;
-    --fog-light:#8695B3;
-    --gold:#EAD3AC;
+    --terracotta:#E07856;
+    --terracotta-deep:#B54A2E;
+    --terracotta-tint:#F8DCC9;
+    --terracotta-tint-2:#FBEEE4;
+    --fog:#6B5B95;
+    --fog-light:#9C8FC0;
+    --gold:#F4B860;
     --ink:#2B302E;
     --ink-soft:#666D69;
     --ink-faint:#9BA19D;
@@ -92,11 +92,11 @@
   .hero-bg::before{
     content:'';position:absolute;inset:-20%;
     background:
-      radial-gradient(48% 42% at 18% 12%, #F0DCB8 0%, transparent 62%),
-      radial-gradient(52% 46% at 82% 22%, #E7BFA3 0%, transparent 64%),
-      radial-gradient(56% 50% at 30% 78%, #C08E86 0%, transparent 66%),
-      radial-gradient(60% 54% at 78% 88%, #6C7C9E 0%, transparent 68%),
-      linear-gradient(175deg,#F5E4C9 0%,#E3B9A0 38%,#BC8E88 66%,#6E7E9F 100%);
+      radial-gradient(48% 42% at 18% 12%, #FCD98A 0%, transparent 62%),
+      radial-gradient(52% 46% at 82% 22%, #F4915C 0%, transparent 64%),
+      radial-gradient(56% 50% at 30% 78%, #DA5F6E 0%, transparent 66%),
+      radial-gradient(60% 54% at 78% 88%, #6B5B95 0%, transparent 68%),
+      linear-gradient(175deg,#FBE3A6 0%,#F2A566 30%,#E0715F 55%,#B85677 75%,#5C4A80 100%);
     animation:drift 26s ease-in-out infinite alternate;
   }
   @keyframes drift{
@@ -120,7 +120,7 @@
   }
   .hero h1 .accent{
     display:inline-block;
-    background:linear-gradient(100deg,#7A4A31,#A96B45);
+    background:linear-gradient(100deg,#FFE3B0,#FFB199);
     -webkit-background-clip:text;background-clip:text;color:transparent;
     text-shadow:none;
   }
@@ -186,15 +186,45 @@
   .path li::before{
     content:'';position:absolute;left:2px;top:6px;width:9px;height:9px;border-radius:50%;
     background:var(--terracotta-deep);box-shadow:0 0 0 4px var(--terracotta-tint);
-    transition:transform .3s;
+    transition:transform .3s,opacity .4s;
+    opacity:0;transform:scale(.4);
   }
+  .path.in li::before{opacity:1;transform:scale(1)}
   .path li:hover::before{transform:scale(1.35)}
   .path li:not(:last-child)::after{
     content:'';position:absolute;left:6px;top:18px;bottom:0;width:1.5px;
     background:linear-gradient(180deg,var(--terracotta),var(--line));
+    transform:scaleY(0);transform-origin:top;
+    transition:transform .65s cubic-bezier(.3,.7,.25,1);
   }
+  .path.in li:not(:last-child)::after{transform:scaleY(1)}
+  .path.in li:nth-child(1)::before,.path.in li:nth-child(1)::after{transition-delay:.05s}
+  .path.in li:nth-child(2)::before,.path.in li:nth-child(2)::after{transition-delay:.3s}
+  .path.in li:nth-child(3)::before,.path.in li:nth-child(3)::after{transition-delay:.55s}
+  .path.in li:nth-child(4)::before,.path.in li:nth-child(4)::after{transition-delay:.8s}
+  .path.in li:nth-child(5)::before,.path.in li:nth-child(5)::after{transition-delay:1.05s}
   .path b{display:block;font-size:14.5px;font-weight:600;margin-bottom:1px}
   .path p{font-size:13px;color:var(--ink-soft);line-height:1.5}
+
+  /* ============ Philosophy statement (in toolkit flow) ============ */
+  .philo{
+    position:relative;margin:34px 0 6px;padding:4px 0 4px 26px;max-width:70ch;
+  }
+  .philo::before{
+    content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px;
+    background:linear-gradient(180deg,var(--gold),var(--terracotta) 48%,var(--fog));
+    transform:scaleY(0);transform-origin:top;
+    transition:transform .8s cubic-bezier(.2,.8,.3,1);
+  }
+  .philo.in::before{transform:scaleY(1)}
+  .philo-quote{
+    font-size:clamp(18px,2.3vw,23px);font-weight:600;letter-spacing:-.015em;line-height:1.42;
+    color:var(--ink);margin-bottom:12px;
+  }
+  .q-quant{color:var(--fog)}
+  .q-qual{color:var(--terracotta-deep)}
+  .philo-sub{font-size:15.5px;color:var(--ink-soft);line-height:1.65}
+  .philo-sub strong{color:var(--ink);font-weight:600}
 
   /* ============ Methods Map (signature) ============ */
   .mapsec{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -301,13 +331,45 @@
   .flow-step b{display:block;font-size:15px;font-weight:600;margin-bottom:5px}
   .flow-step p{font-size:12.8px;color:var(--ink-soft);line-height:1.5}
 
-  /* Roadmap */
-  .rmap{display:flex;border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:34px;background:var(--white)}
-  .ry{flex:1;padding:20px 18px;border-right:1px solid var(--line);transition:background .25s}
-  .ry:last-child{border-right:none}
-  .ry:hover{background:var(--terracotta-tint-2)}
-  .ry .yr{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--terracotta-deep);font-weight:600;display:block;margin-bottom:6px}
-  .ry .d{font-size:12.8px;color:var(--ink-soft);line-height:1.5}
+  /* Sprint timeline (3-week research sprint) */
+  .sprint{position:relative;margin-bottom:34px;padding:36px 0 8px}
+  .sprint-line{
+    position:absolute;top:56px;left:16.6667%;right:16.6667%;height:2px;
+    background:var(--line);z-index:0;border-radius:2px;
+  }
+  .sprint-fill{
+    position:absolute;inset:0;transform-origin:left;transform:scaleX(0);
+    background:linear-gradient(90deg,var(--gold),var(--terracotta),var(--terracotta-deep));
+    transition:transform 1.3s cubic-bezier(.2,.7,.2,1);
+  }
+  .sprint.in .sprint-fill{transform:scaleX(1)}
+  .sprint-pulse{
+    position:absolute;top:-5px;left:0;width:30px;height:12px;border-radius:100px;
+    background:radial-gradient(circle,rgba(224,120,86,.85),transparent 72%);
+    opacity:0;filter:blur(1.5px);
+  }
+  .sprint.pulse-on .sprint-pulse{opacity:1;animation:sprintpulse 3.2s ease-in-out .6s infinite}
+  @keyframes sprintpulse{
+    0%{left:-3%}
+    100%{left:100%}
+  }
+  .sprint-steps{display:flex;position:relative;z-index:1}
+  .sprint-step{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 16px}
+  .sprint-node{
+    width:42px;height:42px;border-radius:50%;background:var(--white);border:2px solid var(--terracotta);
+    display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-weight:600;
+    font-size:14px;color:var(--terracotta-deep);margin-bottom:18px;flex:none;
+    opacity:0;transform:scale(.4);transition:transform .4s cubic-bezier(.3,1.4,.4,1),opacity .4s;
+  }
+  .sprint.in .sprint-node{opacity:1;transform:scale(1)}
+  .sprint.in .sprint-step:nth-child(1) .sprint-node{transition-delay:.1s}
+  .sprint.in .sprint-step:nth-child(2) .sprint-node{transition-delay:.55s}
+  .sprint.in .sprint-step:nth-child(3) .sprint-node{transition-delay:1s}
+  .sprint-wk{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--terracotta-deep);font-weight:600;margin-bottom:8px;display:block;
+  }
+  .sprint-step p{font-size:13.5px;color:var(--ink-soft);line-height:1.55;max-width:230px}
 
   /* Impact */
   .impact{
@@ -320,12 +382,34 @@
     text-transform:uppercase;color:var(--terracotta-deep);display:block;margin-bottom:9px;font-weight:600;
   }
 
+  /* ============ Public Work ============ */
+  .pub-list{display:flex;flex-direction:column;gap:2px;margin-top:36px}
+  .pub-item{
+    display:flex;justify-content:space-between;align-items:center;gap:20px;
+    padding:22px 24px;background:var(--white);border:1px solid var(--line);
+    text-decoration:none;color:inherit;transition:border-color .18s,transform .18s,box-shadow .18s;
+  }
+  .pub-item:not(:first-child){border-top:none}
+  .pub-item:first-child{border-radius:14px 14px 0 0}
+  .pub-item:last-child{border-radius:0 0 14px 14px}
+  .pub-item:only-child{border-radius:14px}
+  a.pub-item:hover{border-color:var(--terracotta);transform:translateX(4px);position:relative;z-index:1;box-shadow:0 8px 24px -14px rgba(43,48,46,.25)}
+  .pub-main{display:flex;flex-direction:column;gap:5px}
+  .pub-title{font-size:15.5px;font-weight:600;color:var(--ink);line-height:1.4}
+  .pub-meta{
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.06em;
+    color:var(--ink-faint);text-transform:uppercase;
+  }
+  .pub-arw{font-size:16px;color:var(--terracotta-deep);flex:none;transition:transform .18s}
+  a.pub-item:hover .pub-arw{transform:translate(3px,-3px)}
+  div.pub-item{cursor:default}
+
   /* ============ Footer CTA ============ */
   .foot{position:relative;overflow:hidden;background:var(--ink);color:var(--white);padding:96px 0 44px;margin-top:40px}
   .foot::before{
     content:'';position:absolute;inset:0;
-    background:radial-gradient(70% 130% at 15% 0%,rgba(203,153,129,.4) 0%,transparent 60%),
-               radial-gradient(60% 120% at 88% 100%,rgba(90,110,146,.45) 0%,transparent 62%);
+    background:radial-gradient(70% 130% at 15% 0%,rgba(224,120,86,.4) 0%,transparent 60%),
+               radial-gradient(60% 120% at 88% 100%,rgba(107,91,149,.45) 0%,transparent 62%);
   }
   .foot .wrap{position:relative;z-index:2}
   .foot h2{font-size:clamp(28px,4.4vw,46px);font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-bottom:18px;max-width:16ch}
@@ -343,9 +427,19 @@
     .about-grid{grid-template-columns:1fr;gap:38px}
     .cols{grid-template-columns:1fr;gap:28px}
     .bars,.stats3{grid-template-columns:1fr}
-    .rmap{flex-direction:column}
-    .ry{border-right:none;border-bottom:1px solid var(--line)}
-    .ry:last-child{border-bottom:none}
+    .sprint-line{display:none}
+    .sprint-steps{flex-direction:column;align-items:flex-start;gap:0}
+    .sprint-step{
+      flex-direction:row;align-items:flex-start;text-align:left;
+      padding:0 0 26px;position:relative;width:100%;
+    }
+    .sprint-step:last-child{padding-bottom:0}
+    .sprint-step:not(:last-child)::after{
+      content:'';position:absolute;left:20px;top:42px;bottom:0;width:2px;background:var(--line);
+    }
+    .sprint-node{margin-right:16px;margin-bottom:0}
+    .sprint-body{text-align:left}
+    .sprint-step p{max-width:none}
     .flow-step{border-right:none;border-bottom:1px solid var(--line);min-width:100%}
     .flow-step:last-child{border-bottom:none}
     .case-top{grid-template-columns:1fr}
@@ -357,6 +451,7 @@
     .nav-links{gap:16px;font-size:13px}
     .nav-links a.hide-sm{display:none}
     .sec{padding:72px 0}
+    .philo{padding:2px 0 2px 18px;margin:28px 0 4px}
     .cases{padding-top:64px}
     .case{padding:56px 0}
     .plot-wrap{overflow-x:auto;padding:18px 14px;-webkit-overflow-scrolling:touch}
@@ -385,6 +480,7 @@
       <a href="#about" class="hide-sm">About</a>
       <a href="#methods" class="hide-sm">Methods</a>
       <a href="#work">Work</a>
+      <a href="#publications" class="hide-sm">Public Work</a>
       <a href="#contact" class="nav-cta">Get in touch</a>
     </div>
   </div>
@@ -420,15 +516,15 @@
     <div class="about-grid">
       <div class="about-text rv">
         <p class="lead">My path started in public health.</p>
-        <p>That grew into a research focus on people and systems, which took me to UC Berkeley's MIDS program — building on the early research roots with formal training in data science and analytical rigor.</p>
+        <p>That grew into a research focus on people and systems, which took me to the University of California, Berkeley's MIDS program — building on the early research roots with formal training in data science and analytical rigor.</p>
         <p>From there, through varied experience, I grew as a UX researcher, applied data science and machine learning to research problems, and moved into product direction and strategy — where all three meet.</p>
         <p>That data science grounding is what makes me a stronger UX researcher. I stay closely tied to AI and to applying data science solutions to UX problems.</p>
       </div>
       <div class="path rv">
         <span class="path-label">The path here</span>
         <ol>
-          <li><b>Public Health — SJSU</b><p>Undergraduate degree</p></li>
-          <li><b>Data Science — UC Berkeley MIDS</b><p>Master's degree</p></li>
+          <li><b>Public Health — San Jose State University</b><p>Undergraduate degree</p></li>
+          <li><b>Data Science — University of California, Berkeley (MIDS)</b><p>Master's degree</p></li>
           <li><b>UX Research</b><p>Applied research focused on people and systems</p></li>
           <li><b>NLP &amp; ML</b><p>Applied data science, analytics, and solutions to UX problems</p></li>
           <li><b>Product Direction and Strategy</b><p>Where data science, UX, and product strategy meet</p></li>
@@ -451,12 +547,17 @@
       <p>My entire professional experience has been fast, rapid applied research — gained working in small, agile teams and through my consulting background.</p>
     </div>
 
+    <div class="philo rv">
+      <p class="philo-quote">The <span class="q-quant">quant</span> tells you what is happening and how much. The <span class="q-qual">qual</span> tells you why — and for whom.</p>
+      <p class="philo-sub">Numbers give scale and confidence; stories give meaning and direction. <strong>Qual adds the color to the quant</strong> — which is why my work sits on both sides of the map below.</p>
+    </div>
+
     <div class="map-controls rv">
       <span class="filter-lbl">Filter</span>
       <button class="fchip" data-f="all" aria-pressed="true">All methods</button>
-      <button class="fchip" data-f="qual" aria-pressed="false"><i style="background:#9C6B52"></i>Qualitative</button>
-      <button class="fchip" data-f="quant" aria-pressed="false"><i style="background:#5A6E92"></i>Quantitative</button>
-      <button class="fchip" data-f="mixed" aria-pressed="false"><i style="background:#B98A6E"></i>Mixed</button>
+      <button class="fchip" data-f="qual" aria-pressed="false"><i style="background:#B54A2E"></i>Qualitative</button>
+      <button class="fchip" data-f="quant" aria-pressed="false"><i style="background:#6B5B95"></i>Quantitative</button>
+      <button class="fchip" data-f="mixed" aria-pressed="false"><i style="background:#D98F5E"></i>Mixed</button>
     </div>
 
     <div class="plot-wrap rv">
@@ -483,78 +584,78 @@
 
         <g id="pts">
           <g class="pt" data-cat="qual">
-            <circle class="halo" cx="135" cy="115" r="20" fill="#9C6B52" opacity=".13"/>
-            <circle class="core" cx="135" cy="115" r="8" fill="#9C6B52"/>
+            <circle class="halo" cx="135" cy="115" r="20" fill="#B54A2E" opacity=".13"/>
+            <circle class="core" cx="135" cy="115" r="8" fill="#B54A2E"/>
             <text x="135" y="90" text-anchor="middle">Contextual inquiry</text>
           </g>
           <g class="pt" data-cat="mixed">
-            <circle class="halo" cx="300" cy="98" r="20" fill="#B98A6E" opacity=".13"/>
-            <circle class="core" cx="300" cy="98" r="8" fill="#B98A6E"/>
+            <circle class="halo" cx="300" cy="98" r="20" fill="#D98F5E" opacity=".13"/>
+            <circle class="core" cx="300" cy="98" r="8" fill="#D98F5E"/>
             <text x="300" y="73" text-anchor="middle">Participatory co-design</text>
           </g>
           <g class="pt" data-cat="quant">
-            <circle class="halo" cx="690" cy="103" r="20" fill="#5A6E92" opacity=".13"/>
-            <circle class="core" cx="690" cy="103" r="8" fill="#5A6E92"/>
+            <circle class="halo" cx="690" cy="103" r="20" fill="#6B5B95" opacity=".13"/>
+            <circle class="core" cx="690" cy="103" r="8" fill="#6B5B95"/>
             <text x="690" y="78" text-anchor="middle">Survey design</text>
           </g>
           <g class="pt" data-cat="qual">
-            <circle class="halo" cx="215" cy="196" r="20" fill="#9C6B52" opacity=".13"/>
-            <circle class="core" cx="215" cy="196" r="8" fill="#9C6B52"/>
+            <circle class="halo" cx="215" cy="196" r="20" fill="#B54A2E" opacity=".13"/>
+            <circle class="core" cx="215" cy="196" r="8" fill="#B54A2E"/>
             <text x="215" y="228" text-anchor="middle">Focus groups</text>
           </g>
           <g class="pt" data-cat="mixed">
-            <circle class="halo" cx="425" cy="178" r="20" fill="#B98A6E" opacity=".13"/>
-            <circle class="core" cx="425" cy="178" r="8" fill="#B98A6E"/>
+            <circle class="halo" cx="425" cy="178" r="20" fill="#D98F5E" opacity=".13"/>
+            <circle class="core" cx="425" cy="178" r="8" fill="#D98F5E"/>
             <text x="425" y="153" text-anchor="middle">Stakeholder synthesis</text>
           </g>
           <g class="pt" data-cat="mixed">
-            <circle class="halo" cx="565" cy="212" r="20" fill="#B98A6E" opacity=".13"/>
-            <circle class="core" cx="565" cy="212" r="8" fill="#B98A6E"/>
+            <circle class="halo" cx="565" cy="212" r="20" fill="#D98F5E" opacity=".13"/>
+            <circle class="core" cx="565" cy="212" r="8" fill="#D98F5E"/>
             <text x="565" y="244" text-anchor="middle">NLP &amp; text analytics</text>
           </g>
           <g class="pt" data-cat="quant">
-            <circle class="halo" cx="812" cy="186" r="20" fill="#5A6E92" opacity=".13"/>
-            <circle class="core" cx="812" cy="186" r="8" fill="#5A6E92"/>
+            <circle class="halo" cx="812" cy="186" r="20" fill="#6B5B95" opacity=".13"/>
+            <circle class="core" cx="812" cy="186" r="8" fill="#6B5B95"/>
             <text x="855" y="218" text-anchor="end">Segmentation &amp; clustering</text>
           </g>
           <g class="pt" data-cat="qual">
-            <circle class="halo" cx="128" cy="262" r="20" fill="#9C6B52" opacity=".13"/>
-            <circle class="core" cx="128" cy="262" r="8" fill="#9C6B52"/>
+            <circle class="halo" cx="128" cy="262" r="20" fill="#B54A2E" opacity=".13"/>
+            <circle class="core" cx="128" cy="262" r="8" fill="#B54A2E"/>
             <text x="78" y="294" text-anchor="start">Practitioner interviews</text>
           </g>
           <g class="pt" data-cat="mixed">
-            <circle class="halo" cx="378" cy="334" r="20" fill="#B98A6E" opacity=".13"/>
-            <circle class="core" cx="378" cy="334" r="8" fill="#B98A6E"/>
+            <circle class="halo" cx="378" cy="334" r="20" fill="#D98F5E" opacity=".13"/>
+            <circle class="core" cx="378" cy="334" r="8" fill="#D98F5E"/>
             <text x="378" y="309" text-anchor="middle">Rapid-cycle studies</text>
           </g>
           <g class="pt" data-cat="quant">
-            <circle class="halo" cx="640" cy="322" r="20" fill="#5A6E92" opacity=".13"/>
-            <circle class="core" cx="640" cy="322" r="8" fill="#5A6E92"/>
+            <circle class="halo" cx="640" cy="322" r="20" fill="#6B5B95" opacity=".13"/>
+            <circle class="core" cx="640" cy="322" r="8" fill="#6B5B95"/>
             <text x="640" y="297" text-anchor="middle">Conjoint / MaxDiff</text>
           </g>
           <g class="pt" data-cat="qual">
-            <circle class="halo" cx="162" cy="400" r="20" fill="#9C6B52" opacity=".13"/>
-            <circle class="core" cx="162" cy="400" r="8" fill="#9C6B52"/>
+            <circle class="halo" cx="162" cy="400" r="20" fill="#B54A2E" opacity=".13"/>
+            <circle class="core" cx="162" cy="400" r="8" fill="#B54A2E"/>
             <text x="162" y="432" text-anchor="middle">Usability testing</text>
           </g>
           <g class="pt" data-cat="quant">
-            <circle class="halo" cx="726" cy="406" r="20" fill="#5A6E92" opacity=".13"/>
-            <circle class="core" cx="726" cy="406" r="8" fill="#5A6E92"/>
+            <circle class="halo" cx="726" cy="406" r="20" fill="#6B5B95" opacity=".13"/>
+            <circle class="core" cx="726" cy="406" r="8" fill="#6B5B95"/>
             <text x="726" y="438" text-anchor="middle">A/B &amp; experimentation</text>
           </g>
           <g class="pt" data-cat="quant">
-            <circle class="halo" cx="470" cy="452" r="20" fill="#5A6E92" opacity=".13"/>
-            <circle class="core" cx="470" cy="452" r="8" fill="#5A6E92"/>
+            <circle class="halo" cx="470" cy="452" r="20" fill="#6B5B95" opacity=".13"/>
+            <circle class="core" cx="470" cy="452" r="8" fill="#6B5B95"/>
             <text x="470" y="484" text-anchor="middle">Longitudinal outcomes</text>
           </g>
           <g class="pt" data-cat="quant">
-            <circle class="halo" cx="812" cy="492" r="20" fill="#5A6E92" opacity=".13"/>
-            <circle class="core" cx="812" cy="492" r="8" fill="#5A6E92"/>
+            <circle class="halo" cx="812" cy="492" r="20" fill="#6B5B95" opacity=".13"/>
+            <circle class="core" cx="812" cy="492" r="8" fill="#6B5B95"/>
             <text x="855" y="462" text-anchor="end">Statistical model</text>
           </g>
           <g class="pt" data-cat="quant">
-            <circle class="halo" cx="580" cy="392" r="20" fill="#5A6E92" opacity=".13"/>
-            <circle class="core" cx="580" cy="392" r="8" fill="#5A6E92"/>
+            <circle class="halo" cx="580" cy="392" r="20" fill="#6B5B95" opacity=".13"/>
+            <circle class="core" cx="580" cy="392" r="8" fill="#6B5B95"/>
             <text x="580" y="367" text-anchor="middle">Causal inference</text>
           </g>
         </g>
@@ -584,9 +685,11 @@
       </div>
       <div class="case-chips">
         <span class="cchip">Longitudinal survey design</span>
+        <span class="cchip">Instrument calibration</span>
         <span class="cchip">Quantitative outcome analysis</span>
         <span class="cchip">Digital storytelling</span>
         <span class="cchip">Stakeholder coordination</span>
+        <span class="cchip">Qualtrics</span>
       </div>
 
       <div class="cols">
@@ -598,15 +701,17 @@
           <div class="lbl">My approach</div>
           <ul>
             <li>Involved from project initiation, coordinating needs across the agency and partner organizations</li>
-            <li>Defined scope and programmed a pre/post design: baseline instrument plus matched follow-up survey, n=122</li>
+            <li>Defined scope and programmed a pre/post design: baseline and matched follow-up surveys, n=122</li>
+            <li>Built and launched the instruments in Qualtrics, using standardized questionnaires so results were comparable across time and to outside benchmarks</li>
             <li>Owned all quantitative analysis across housing, education, employment, and financial-security domains</li>
-            <li>Co-created digital stories with participants (video, poetry, photography) that made the numbers land with funders and policymakers</li>
+            <li>Co-created digital stories with participants (video, poetry, photography) to show the program's impact — bringing the user lens to the quantitative data</li>
           </ul>
         </div>
       </div>
 
-      <div class="lbl">Method note</div>
-      <p class="note">We surveyed the same 122 respondents every month, from enrollment through follow-up roughly two years later, tracking eight quantitative outcome measures over time.</p>
+      <div class="lbl">Method &amp; instrument design</div>
+      <p class="note">We conducted monthly check-ins with the same 122 respondents, from enrollment through follow-up roughly two years later, tracking eight quantitative outcome measures over time. Surveys were built and fielded in Qualtrics using standardized questionnaires.</p>
+      <p class="note">Because the participants were current and former foster youth, I calibrated the instruments before launch — testing that every question was understood as intended, and that respondents would interpret and answer it the same way. Comparing change over two years only works if the question means the same thing in month one as it does in month twenty-four, and the same thing to every respondent. That calibration is what made the numbers below trustworthy.</p>
 
       <div class="lbl">What the data showed — baseline → follow-up</div>
       <div class="bars">
@@ -659,11 +764,12 @@
       <div class="case-top">
         <div>
           <div class="case-idx"><span class="bar"></span> 02 · Research program redesign</div>
-          <h3 class="case-title">Building a research engine that kept HR leaders ahead of the trends that mattered.</h3>
+          <h3 class="case-title">Building a repeatable research model that kept HR leaders ahead of the trends that mattered.</h3>
           <a class="case-link" href="https://worldatwork.org/research/mini-study-emerging-insights-on-ai-in-total-rewards" target="_blank" rel="noopener">View a sample study <span class="arw">↗</span></a>
         </div>
       </div>
       <div class="case-chips">
+        <span class="cchip">Research program design</span>
         <span class="cchip">Survey research</span>
         <span class="cchip">Practitioner interviews</span>
         <span class="cchip">Rapid-cycle studies</span>
@@ -673,16 +779,48 @@
       <div class="cols">
         <div>
           <div class="lbl">The problem</div>
-          <p>The organization's research process was built for long, infrequent reports — by the time a study shipped, the workforce and compensation trends it covered had often already moved on. Leadership needed research HR leaders could act on while a trend was still current, not months later.</p>
+          <p>The organization's research process was built for long, infrequent reports — by the time a study shipped, the workforce and compensation trends it covered had often already moved on. Leadership needed research HR leaders could act on while a trend was still current, not months later. The real problem wasn't any one study; it was that there was no repeatable way to produce them at speed.</p>
         </div>
         <div>
           <div class="lbl">My approach</div>
           <ul>
-            <li>Led the shift from occasional long-form reports to a repeatable model of bite-sized, quick-turnaround studies</li>
-            <li>Designed and fielded a structured quantitative survey for each study, paired with practitioner interviews</li>
-            <li>Gathered and analyzed the data myself, then built the infographics used to publish each study</li>
-            <li>Owned the process end to end — not just the system, but the research, the writing, and the design in every cycle</li>
+            <li>Designed a repeatable research model — a standard three-week cycle, question set, interview structure, and output format the team could run again and again</li>
+            <li>Built reusable components: a defined survey question framework, a standing panel of HR professionals, an interview guide template, and an infographic format that stayed consistent study to study</li>
+            <li>Ran the first cycles end to end myself — the research, the analysis, the writing, and the design — to prove the model worked before handing it off</li>
           </ul>
+        </div>
+      </div>
+
+      <div class="lbl">From kickoff to published insight</div>
+      <div class="stats3">
+        <div class="st"><div class="st-n">3 wks</div><div class="st-l">Total time, initiation to published results</div></div>
+        <div class="st"><div class="st-n">30 min</div><div class="st-l">Focused practitioner interviews, clearly defined questions</div></div>
+        <div class="st"><div class="st-n" data-count="3">0</div><div class="st-l">Days to build the infographic once data closed</div></div>
+      </div>
+      <div class="sprint rv">
+        <div class="sprint-line"><div class="sprint-fill"></div><div class="sprint-pulse"></div></div>
+        <div class="sprint-steps">
+          <div class="sprint-step">
+            <div class="sprint-node">1</div>
+            <div class="sprint-body">
+              <span class="sprint-wk">Week 1</span>
+              <p>Defined clear survey questions and an interview guide; fielded to our existing panel of HR professionals</p>
+            </div>
+          </div>
+          <div class="sprint-step">
+            <div class="sprint-node">2</div>
+            <div class="sprint-body">
+              <span class="sprint-wk">Week 2</span>
+              <p>Ran focused 30-minute practitioner interviews alongside the survey, using clearly defined questions</p>
+            </div>
+          </div>
+          <div class="sprint-step">
+            <div class="sprint-node">3</div>
+            <div class="sprint-body">
+              <span class="sprint-wk">Week 3</span>
+              <p>Synthesized findings and built the infographic — published just days after data collection closed</p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -714,7 +852,7 @@
         <div>
           <div class="lbl">My approach</div>
           <ul>
-            <li>Served as the vendor-side product lead — responsible for the platform's scientific foundation, building the product end to end, and supporting the client's roadmap and decision-making</li>
+            <li>Served as the vendor-side product lead — responsible for the platform's data science foundation, building the product end to end, and supporting the client's roadmap and decision-making</li>
             <li>Ran usability sessions directly with marketing-team users to understand how they actually worked with the platform</li>
             <li>Reviewed outputs from both a statistical and a user perspective, surfacing where results didn't match how people needed to act on them</li>
             <li>Guided decisions on methodology, features, and the level of detail exposed — balancing rigor with usability</li>
@@ -757,6 +895,59 @@
         The optimizer supported reallocating $500M in marketing spend toward higher-performing channels. From there, I kept expanding the platform — more features, more granular data — so it could deliver faster, more actionable insight for both technical and non-technical users, soliciting ongoing feedback alongside formal usability studies throughout.
       </div>
     </article>
+  </div>
+</section>
+
+<!-- ============ PUBLIC WORK ============ -->
+<section class="sec" id="publications">
+  <div class="wrap">
+    <div class="rv">
+      <div class="kicker">Public work</div>
+      <h2 class="sec-title">Published research &amp; projects.</h2>
+    </div>
+    <div class="pub-list rv">
+      <a class="pub-item" href="https://arxiv.org/abs/2404.13078" target="_blank" rel="noopener">
+        <div class="pub-main">
+          <span class="pub-title">Empowering Interdisciplinary Research with BERT-Based Models: An Approach Through SciBERT-CNN with Topic Modeling</span>
+          <span class="pub-meta">arXiv · Apr 16, 2024</span>
+        </div>
+        <span class="pub-arw">↗</span>
+      </a>
+      <a class="pub-item" href="https://www.ischool.berkeley.edu/projects/2024/medycode-assistant" target="_blank" rel="noopener">
+        <div class="pub-main">
+          <span class="pub-title">Medycode Assistant — MIDS Capstone Project</span>
+          <span class="pub-meta">UC Berkeley School of Information · Summer 2024</span>
+        </div>
+        <span class="pub-arw">↗</span>
+      </a>
+      <a class="pub-item" href="https://worldatwork.org/research" target="_blank" rel="noopener">
+        <div class="pub-main">
+          <span class="pub-title">Mini-Studies on Emerging HR &amp; Total Rewards Topics</span>
+          <span class="pub-meta">WorldatWork · Sample of an ongoing series</span>
+        </div>
+        <span class="pub-arw">↗</span>
+      </a>
+      <a class="pub-item" href="https://worldatwork.org/about/press-room/2024-salary-increase-budgets-moderate-2025-projections-indicate-further-contraction" target="_blank" rel="noopener">
+        <div class="pub-main">
+          <span class="pub-title">Salary Budget Survey 2024-2025</span>
+          <span class="pub-meta">WorldatWork · Jul 31, 2024</span>
+        </div>
+        <span class="pub-arw">↗</span>
+      </a>
+      <a class="pub-item" href="https://worldatwork.org/about/press-room/salary-increase-budgets-reach-20-year-high-in-worldatwork-s-2023-2024-survey" target="_blank" rel="noopener">
+        <div class="pub-main">
+          <span class="pub-title">Salary Budget Survey 2023-2024</span>
+          <span class="pub-meta">WorldatWork · Oct 2, 2023</span>
+        </div>
+        <span class="pub-arw">↗</span>
+      </a>
+      <div class="pub-item">
+        <div class="pub-main">
+          <span class="pub-title">CalWORKs: Client Experiences</span>
+          <span class="pub-meta">Department of Employment &amp; Benefit Services, Santa Clara County Social Services Agency · Jul 31, 2020</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -883,16 +1074,16 @@
   var plot = document.querySelector('.plot');
   if (plot) mObs.observe(plot);
 
-  /* Flow diagram: trigger pulse animation on scroll */
+  /* Flow diagram & sprint timeline: trigger pulse animation on scroll */
   var flowObs = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if (e.isIntersecting){ e.target.classList.add('pulse-on'); }
     });
   }, {threshold:0.4});
-  document.querySelectorAll('.flow').forEach(function(f){ flowObs.observe(f); });
+  document.querySelectorAll('.flow, .sprint').forEach(function(f){ flowObs.observe(f); });
 
   /* Active nav link */
-  var secs = ['about','methods','work','contact']
+  var secs = ['about','methods','work','publications','contact']
     .map(function(id){ return document.getElementById(id); })
     .filter(Boolean);
   var navA = {};
