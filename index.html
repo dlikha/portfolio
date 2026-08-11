@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Darya Likhareva — Research &amp; Product Case Studies</title>
+<title>Darya Likhareva — Research &amp; Case Studies</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --sage:#3D7A5C;
-    --sage-dark:#28513C;
-    --sage-tint:#EAF0EC;
-    --sage-tint-2:#F4F7F5;
-    --gold:#B07B33;
-    --ink:#20241F;
-    --ink-soft:#565F5A;
-    --ink-faint:#8B938D;
-    --paper:#FBFAF7;
-    --line:#DFE2DA;
+    --terracotta:#CB9981;
+    --terracotta-deep:#9C6B52;
+    --terracotta-tint:#F3E7DE;
+    --terracotta-tint-2:#F8F1EC;
+    --fog-blue:#5A6E92;
+    --ink:#363B39;
+    --ink-soft:#6B716D;
+    --ink-faint:#9A9F9B;
+    --paper:#FDFBF9;
+    --line:#EAE1D9;
     --white:#FFFFFF;
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -26,57 +26,133 @@
   body{
     background:var(--paper);
     color:var(--ink);
-    font-family:'DM Sans',sans-serif;
+    font-family:'Poppins',sans-serif;
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
   a{color:inherit}
   .wrap{max-width:920px;margin:0 auto;padding:0 28px}
 
-  /* ===== Header ===== */
-  header.site{
-    padding:56px 0 40px;
+  /* ===== Top nav ===== */
+  nav.topnav{
+    background:var(--white);
     border-bottom:1px solid var(--line);
+  }
+  .navwrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 28px;
+    max-width:920px;
+    margin:0 auto;
+  }
+  .nav-name{
+    font-weight:600;
+    font-size:17px;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+  }
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap:22px;
+    font-size:14px;
+  }
+  .nav-links a{
+    text-decoration:none;
+    color:var(--ink-soft);
+    font-weight:500;
+    transition:color .15s;
+  }
+  .nav-links a:hover{color:var(--terracotta-deep)}
+  .nav-links a.current{
+    color:var(--ink);
+    border-bottom:1px solid var(--terracotta);
+    padding-bottom:2px;
+  }
+  .nav-icon{width:17px;height:17px;display:block}
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;
+    padding:64px 0 84px;
+    overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,
+      #EAD3AC 0%,
+      #E0B79A 24%,
+      #CB9981 46%,
+      #A9808C 68%,
+      #6C7896 86%,
+      #5A6E92 100%);
+    opacity:.9;
+  }
+  .hero-inner{
+    position:relative;
+    z-index:1;
+  }
+  .hero-card{
+    background:rgba(203,153,129,0.88);
+    border-radius:18px;
+    padding:44px 40px;
+    max-width:640px;
+    box-shadow:0 20px 50px -20px rgba(54,59,57,.35);
   }
   .eyebrow{
     font-family:'IBM Plex Mono',monospace;
     font-size:12px;
-    letter-spacing:.12em;
+    letter-spacing:.14em;
     text-transform:uppercase;
-    color:var(--sage-dark);
-    margin-bottom:14px;
+    color:rgba(255,255,255,.85);
+    margin-bottom:16px;
     display:block;
   }
-  h1.name{
-    font-family:'Fraunces',serif;
-    font-weight:500;
-    font-size:clamp(34px,5vw,48px);
+  .hero-card h1{
+    font-weight:700;
+    font-size:clamp(32px,4.6vw,44px);
     letter-spacing:-0.01em;
-    color:var(--ink);
-    margin-bottom:10px;
+    color:var(--white);
+    margin-bottom:18px;
+    line-height:1.15;
   }
-  .tagline{
-    font-size:18px;
-    color:var(--ink-soft);
-    max-width:560px;
+  .hero-sub{
+    font-size:16.5px;
+    color:rgba(255,255,255,.92);
+    max-width:520px;
+    margin-bottom:26px;
   }
-  .site-links{
-    margin-top:22px;
-    display:flex;
-    gap:22px;
+  .hero-link{
+    display:inline-block;
     font-size:14px;
-  }
-  .site-links a{
-    color:var(--sage-dark);
+    font-weight:500;
+    color:var(--white);
     text-decoration:none;
-    border-bottom:1px solid transparent;
-    transition:border-color .15s;
+    border-bottom:1px solid rgba(255,255,255,.6);
+    padding-bottom:2px;
   }
-  .site-links a:hover{border-bottom-color:var(--sage-dark)}
+  .hero-btn{
+    position:absolute;
+    right:28px;
+    bottom:-24px;
+    z-index:2;
+    background:var(--terracotta-deep);
+    color:var(--white);
+    font-weight:600;
+    font-size:14px;
+    text-decoration:none;
+    padding:14px 26px;
+    border-radius:10px;
+    box-shadow:0 12px 26px -10px rgba(54,59,57,.4);
+    transition:transform .15s;
+  }
+  .hero-btn:hover{transform:translateY(-2px)}
 
   /* ===== Method spectrum (signature element) ===== */
   .method-spectrum{
-    padding:38px 0 44px;
+    padding:64px 0 44px;
     border-bottom:1px solid var(--line);
   }
   .method-spectrum p.label{
@@ -103,7 +179,7 @@
   }
   .method-chip b{
     color:var(--ink);
-    font-weight:500;
+    font-weight:600;
   }
 
   /* ===== Case study sections ===== */
@@ -124,17 +200,17 @@
   .case-num{
     font-family:'IBM Plex Mono',monospace;
     font-size:13px;
-    color:var(--sage-dark);
+    color:var(--terracotta-deep);
     letter-spacing:.05em;
     margin-bottom:8px;
     display:block;
   }
   h2.case-title{
-    font-family:'Fraunces',serif;
-    font-weight:500;
-    font-size:clamp(24px,3.4vw,32px);
+    font-weight:600;
+    font-size:clamp(23px,3.2vw,30px);
     color:var(--ink);
     max-width:520px;
+    letter-spacing:-0.01em;
   }
   .case-meta{
     text-align:right;
@@ -143,7 +219,7 @@
     line-height:1.5;
     min-width:150px;
   }
-  .case-meta .org{color:var(--ink-soft);font-weight:500}
+  .case-meta .org{color:var(--ink-soft);font-weight:600}
 
   .case-tags{
     display:flex;
@@ -155,9 +231,9 @@
     font-size:12.5px;
     padding:4px 11px;
     border-radius:100px;
-    background:var(--sage-tint);
-    color:var(--sage-dark);
-    font-weight:500;
+    background:var(--terracotta-tint);
+    color:var(--terracotta-deep);
+    font-weight:600;
   }
 
   .case-grid{
@@ -167,7 +243,7 @@
     margin-bottom:36px;
   }
   .block h3{
-    font-family:'DM Sans',sans-serif;
+    font-family:'Poppins',sans-serif;
     font-size:13px;
     letter-spacing:.08em;
     text-transform:uppercase;
@@ -187,14 +263,14 @@
   .block li{margin-bottom:6px}
 
   .impact-line{
-    background:var(--sage-tint-2);
-    border-left:3px solid var(--sage);
+    background:var(--terracotta-tint-2);
+    border-left:3px solid var(--terracotta);
     padding:18px 22px;
     font-size:15.5px;
     color:var(--ink);
     border-radius:0 6px 6px 0;
   }
-  .impact-line b{color:var(--sage-dark)}
+  .impact-line b{color:var(--terracotta-deep)}
 
   /* ===== Stat strip ===== */
   .stat-strip{
@@ -211,15 +287,15 @@
   }
   .stat-num{
     font-family:'IBM Plex Mono',monospace;
-    font-size:26px;
+    font-size:25px;
     font-weight:500;
-    color:var(--sage-dark);
+    color:var(--terracotta-deep);
     display:flex;
     align-items:baseline;
     gap:6px;
     margin-bottom:6px;
   }
-  .stat-num .arrow{color:var(--gold);font-size:16px}
+  .stat-num .arrow{color:var(--fog-blue);font-size:16px}
   .stat-label{
     font-size:13px;
     color:var(--ink-faint);
@@ -242,7 +318,7 @@
   .roadmap-year .yr{
     font-family:'IBM Plex Mono',monospace;
     font-size:12px;
-    color:var(--sage-dark);
+    color:var(--terracotta-deep);
     margin-bottom:6px;
     display:block;
   }
@@ -261,9 +337,9 @@
     color:var(--ink-faint);
   }
   footer a{
-    color:var(--sage-dark);
+    color:var(--terracotta-deep);
     text-decoration:none;
-    font-weight:500;
+    font-weight:600;
   }
 
   @media (max-width:720px){
@@ -274,22 +350,41 @@
     .roadmap-year:last-child{border-bottom:none}
     .case-meta{text-align:left}
     .case-head{flex-direction:column}
+    .hero-card{padding:32px 24px}
+    .hero-btn{position:static;display:inline-block;margin-top:24px}
+    .hero{padding-bottom:44px}
+    .nav-name{font-size:15px}
+    .navwrap{padding:18px 20px;gap:12px}
+    .nav-links{gap:14px;font-size:13px}
   }
 </style>
 </head>
 <body>
 
-<div class="wrap">
-  <header class="site">
-    <span class="eyebrow">Research &amp; Product Work</span>
-    <h1 class="name">Darya Likhareva</h1>
-    <p class="tagline">Research-driven product strategist working across data science, UX research, and technical product management.</p>
-    <div class="site-links">
-      <a href="https://likhareva.com">← likhareva.com</a>
-      <a href="https://www.linkedin.com/in/likhareva/">LinkedIn</a>
+<nav class="topnav">
+  <div class="navwrap">
+    <span class="nav-name">Darya Likhareva</span>
+    <div class="nav-links">
+      <a href="https://likhareva.com">Home</a>
+      <a href="https://www.linkedin.com/in/likhareva/" aria-label="LinkedIn">LinkedIn</a>
+      <a href="#" class="current">Case Studies</a>
     </div>
-  </header>
+  </div>
+</nav>
 
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-card">
+      <span class="eyebrow">Research &amp; Case Studies</span>
+      <h1>Deep dives into the work.</h1>
+      <p class="hero-sub">Three projects spanning program evaluation, research operations, and technical product management — each with the problem, the method, and what changed because of it.</p>
+    </div>
+    <a class="hero-btn" href="https://www.linkedin.com/in/likhareva/">LinkedIn</a>
+  </div>
+</section>
+
+<div class="wrap">
   <section class="method-spectrum">
     <p class="label">Methods represented across these three projects</p>
     <div class="method-row">
